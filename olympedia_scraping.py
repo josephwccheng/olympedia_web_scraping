@@ -216,7 +216,7 @@ if __name__ == "__main__":
     else:
         cpu_count = 5
     print(f'detected {cpu_count} cpu cores')
-    with Pool(processes=24) as p:
+    with Pool(processes=cpu_count) as p:
         athletes_bio_and_results = list(tqdm(p.imap(get_bio_and_results_from_athlete_id, athlete_ids[1:]), total=len(athlete_ids[1:]), desc= 'processing athlete ids to obtain bio and results information'))
     
     bio_header = ['athlete_id', 'name', 'sex', 'born', 'height', 'weight', 'noc']
