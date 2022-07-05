@@ -5,9 +5,13 @@
 **Author**: Joseph
 
 **Base URL**: http://www.olympedia.org/
+
 **Programming Language**: Python3.8 and above
 
 ## Main Objective
+
+Perform web scraping on the olympedia website to obtain information on the olympics events and player level events
+
 1. Table of all of Olympics Games (i.e. 2020 Summer Olympics, Tokyo)
 2. Table of all active partipating countries (i.e. USA, United States)
 3. Table of all athletes and their biography (i.e. DOB, sex, country)
