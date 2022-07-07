@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -14,6 +15,8 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_curve, 
 # models
 from sklearn.ensemble import RandomForestClassifier
 
+# plotting
+import matplotlib.pyplot as plt
 
 """
 Main Objective:
@@ -83,12 +86,28 @@ Main Objective:
 # Print out all unique values from dataframe where data type is detected as Object
 def unique_values_from_object_columns(df, max_result_length = 30):
     headers = df.dtypes.to_dict()
-    print('Listing unique values for categorical data from source data')
+    # print('Listing unique values for categorical data from source data')
     for key in headers:
         if(headers[key].str== '|O'):
             unique_values = set(df[key].to_list())
-            print(f'{key} : {",".join([str(value) for value in unique_values][:max_result_length])}')
+            # print(f'{key} : {",".join([str(value) for value in unique_values][:max_result_length])}')
 
+# <Performance Evaluation function>
+def plot_roc_curve(fpr, tpr, label=None):
+    """
+    The ROC curve, modified from 
+    Hands-On Machine learning with Scikit-Learn and TensorFlow; p.91
+    """
+    plt.figure(figsize=(8,8))
+    plt.title('ROC Curve')
+    plt.plot(fpr, tpr, linewidth=2, label=label)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.axis([-0.005, 1, 0, 1.005])
+    plt.xticks(np.arange(0,1, 0.05), rotation=90)
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate (Recall)")
+    plt.legend(loc='best')
+    plt.show()
 
 if __name__ == "__main__":
     # 1. Reading in CSV File
@@ -180,7 +199,8 @@ if __name__ == "__main__":
     fpr, tpr, thresholds = roc_curve(y_test, y_pred, pos_label=1)
     AUC_score = auc(fpr, tpr)
     print(f'AUC score is {AUC_score}')
-
+    # plotting ROC curve
+    plot_roc_curve(fpr, tpr, 'testing')
 
     # MCC - The Matthews Correlation Coefficient (MCC) measures the quality of this logistic model. MCC provides a more even representation of the four parts of the confusion matrix than other classification metrics.
     MCC_score = matthews_corrcoef(y_test, y_pred)
@@ -194,6 +214,3 @@ if __name__ == "__main__":
     print(classification_report(y_test, y_pred))
 
     print('debug')
-# Learning resource
-# https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html
-# https://katstam.com/regression-feature_importance/

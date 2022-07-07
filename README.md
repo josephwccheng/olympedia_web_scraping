@@ -50,5 +50,8 @@ Perform web scraping on the olympedia website to obtain information on the olymp
 4. https://github.com/UOSCS/Olympic_Athletes
 5. https://medium.com/@lminhnguyen/winter-olympic-data-scraping-an-end-to-end-project-using-scrapy-6d064eb62e2e
 
-
-
+## Links for Machine Learning Models Training Process
+1. https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html
+2. https://katstam.com/regression-feature_importance/
+3. https://www.kaggle.com/code/saxinou/imbalanced-data-xgboost-tunning
+4. https://www.kaggle.com/code/carlosdg/xgboost-with-scikit-learn-pipeline-gridsearchcv/notebook

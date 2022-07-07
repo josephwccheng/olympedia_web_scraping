@@ -3,3 +3,6 @@ tqdm
 requests
 pandas
 eli5
+xgboost
+numpy
+matplotlib
