@@ -1,3 +1,4 @@
 .DS_Store
 __pycache__/
 env/
+data/raw_result_html_files/*

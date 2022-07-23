@@ -3,6 +3,9 @@ from typing import List, Dict
 import requests
 import re
 
+SINGLE_ATHLETE_COLUMN_COUNT = 4
+MULTI_ATHLETE_COLUMN_COUNT = 2
+
 class OlympediaScraper():
     def __init__(self):
         self.base_url = 'http://www.olympedia.org'
@@ -58,7 +61,7 @@ class OlympediaScraper():
     # 3. Table of all distinct players
     # Input: country noc
     # Output: list of players who played for the ocuntry
-    def get_athlete_id_from_country(self, country_noc: str):
+    def get_event_athletes_results_from_country(self, country_noc: str):
         country_url = self.base_url + '/countries/' + country_noc
         country_page = requests.get(country_url)
         country_soup = BeautifulSoup(country_page.content, 'html.parser')
@@ -67,19 +70,80 @@ class OlympediaScraper():
             return
         # Get a list of results url for each Edition based on country
         result_urls = [self.base_url + olympic['href'] for olympic in olympic_table.select('tbody > tr > td:nth-child(6) > a')]
-        athlete_ids = []
-        for result_url in result_urls:
-            athlete_ids.extend(self.get_athlete_id_from_result_url(result_url))
-        return set(athlete_ids)
+        editions = [edition.text for edition in olympic_table.select('tbody > tr > td:nth-child(1) > a')]
+        event_athletes = []
+        for edition, result_url in zip(editions,result_urls):
+            event_athletes.extend(self._get_event_athlete_from_result_url(result_url, edition, country_noc))
+        return event_athletes
 
     # <Helper Function>
-    # Get 'athlete_id' from the result page
-    def get_athlete_id_from_result_url(self, result_url: str):
+    # Get event, athelete information from the result page
+    def _get_event_athlete_from_result_url(self, result_url: str, edition: str="", country_noc: str=""):
         result_page = requests.get(result_url)
         result_soup = BeautifulSoup(result_page.content, 'html.parser')
         result_table = result_soup.select_one('table')
-        athlete_ids = [athlete['href'].split("/")[2] for athlete in result_table.select('tbody > tr > td:nth-child(2) > a')]
-        return athlete_ids
+        result_rows = result_table.find_all("tr")
+        
+        event_athletes = []
+        sport = ""
+        event = ""
+        event_url = ""
+        pos =""
+        medal = ""
+        for row in result_rows:
+            isAthlete = False
+            athlete = ""
+            athlete_url = ""
+            if row.h2:
+                sport = row.h2.text
+                continue
+            else:
+                row_elements = row.find_all("td")
+                if len(row_elements) == SINGLE_ATHLETE_COLUMN_COUNT or len(row_elements) != MULTI_ATHLETE_COLUMN_COUNT: # Row containing single athlete or header of multiple athletes
+                    if row_elements[0].find('a'): #First column: event information
+                        event = row_elements[0].find('a').text
+                        event_url = row_elements[0].find('a')['href']
+                    if row_elements[1].find('a'): #Second column: athlete information
+                        athlete = row_elements[1].find('a').text
+                        athlete_url = row_elements[1].find('a')['href']
+                        isAthlete = True
+                    if row_elements[2].text != "": #Third column: Position information
+                        pos = row_elements[2].text
+                    #Fourth column: Medal information
+                    medal = row_elements[3].text
+                    if isAthlete:
+                        event_athletes.append(
+                            {
+                                "edition": edition,
+                                "country_noc": country_noc,
+                                "sport": sport,
+                                "event": event,
+                                "event_id": event_url.split('/')[2],
+                                "athlete": athlete,
+                                "athlete_id": athlete_url.split('/')[2],
+                                "pos": pos,
+                                "medal": medal,
+                                "isTeamSport": False
+                            }
+                        )
+                elif len(row_elements) == MULTI_ATHLETE_COLUMN_COUNT: # Row containing multiple athletes
+                    multi_athletes = row_elements[1].find_all('a')
+                    for multi_athlete in multi_athletes:
+                        event_athletes.append(
+                            {
+                                "edition": edition,
+                                "country_noc": country_noc,
+                                "sport": sport,
+                                "event": event,
+                                "event_id": event_url.split('/')[2],
+                                "athlete": multi_athlete.text,
+                                "athlete_id": multi_athlete['href'].split('/')[2],
+                                "pos": pos,
+                                "medal": medal,
+                                "isTeamSport": True
+                            }
+                        )
+        return event_athletes
 
     # Get athlete's biography from athlete's url
     def get_bio_and_results_from_athlete_id(self, athlete_id: str):
@@ -88,70 +152,103 @@ class OlympediaScraper():
         athlete_soup = BeautifulSoup(athlete_page.content, 'html.parser')
         
         # Obtaining athlete bio info
-        bio_keys_items = athlete_soup.select('body > div.container > table.biodata > tr > th')
-        bio_values_items = athlete_soup.select('body > div.container > table.biodata > tr > td')
-        athlete_bio_info = self.process_athelete_bio(athlete_id, bio_keys_items,bio_values_items)
-
+        athlete_bio_info = self.process_athelete_bio(athlete_id, athlete_soup)
+        
         # Populating a table of all the game the athele participated in and their position / medal
-        olympic_games_items = athlete_soup.select('body > div.container > table.table > tbody > tr > td:nth-child(1)')
-        discipline_items = athlete_soup.select('body > div.container > table.table > tbody > tr > td:nth-child(2) > a:nth-child(1)')
-        noc_items = athlete_soup.select('body > div.container > table.table > tbody > tr > td:nth-child(3)')
-        pos_items = athlete_soup.select('body > div.container > table.table > tbody > tr > td:nth-child(4)')
-        medal_items = athlete_soup.select('body > div.container > table.table > tbody > tr > td:nth-child(5)')
-        athlete_results = self.process_athlete_result_table(athlete_id, olympic_games_items, discipline_items, noc_items, pos_items, medal_items)
+        result_table = athlete_soup.find_all('h2', string='Results')[0].find_next()
+        athlete_results = self.process_athlete_result_table(athlete_id, result_table)
         return { 'athelete_bio_info': athlete_bio_info, 'athelete_results': athlete_results }
 
     # <Helper Function>
-    def process_athelete_bio(self, athelete_id: str, bio_keys_items: list, bio_values_items: list) -> Dict:
+    def process_athelete_bio(self, athlete_id:str, athlete_soup) -> Dict:
+        bio_keys_items = athlete_soup.select('body > div.container > table.biodata > tr > th')
+        bio_values_items = athlete_soup.select('body > div.container > table.biodata > tr > td')
+        description = athlete_soup.select('body > div.container > div.description')
+        special_notes = athlete_soup.select('body > div.container > ul > li')
         keys_bio = [item.get_text() for item in bio_keys_items]
         values_bio = [item.get_text() for item in bio_values_items]
         raw_athlete_bio_info = {keys_bio[i]: values_bio[i] for i in range(len(keys_bio))}
+        noc = athlete_soup.find('th', string='NOC').find_next()
         athlete_bio_info = {
-            'athlete_id': athelete_id,
+            'athlete_id': athlete_id,
             'name': re.sub('[^0-9a-zA-Z]+', ' ', raw_athlete_bio_info.get('Used name')),
             'sex': raw_athlete_bio_info.get('Sex'),
             'born': '',
             'height': '',
             'weight': '',
-            'noc': raw_athlete_bio_info.get('NOC')
+            'country': raw_athlete_bio_info.get('NOC'),
+            'country_noc': noc.select('a')[0]['href'].split('/')[2],
+            'description': '',
+            'special_notes': ''
         }
+
         if raw_athlete_bio_info.get('Born') is not None:
             athlete_bio_info['born'] = raw_athlete_bio_info.get('Born').split(' in ')[0]
+        
         if raw_athlete_bio_info.get('Measurements') is not None:
             measurement = raw_athlete_bio_info.get('Measurements').split(' / ')
             if len(measurement) > 1:
                 athlete_bio_info['height'] = measurement[0].split(' cm')[0]
                 athlete_bio_info['weight'] = measurement[1].split(' kg')[0]
         
+        if description:
+            athlete_bio_info['description'] = " ".join(description[0].text.split())
+        else:
+            athlete_bio_info['description'] = ""
+        
+        if special_notes:
+            athlete_bio_info['special_notes'] = " ".join([" ".join(i.text.split()) for i in special_notes])
+        else:
+           athlete_bio_info['special_notes'] = ""
+        
         return athlete_bio_info
 
     # <Helper Function>
-    def process_athlete_result_table(self, athlete_id:str, olympic_games_items:list, discipline_items:list, noc_items:list, pos_items:list, medal_items:list) -> List[Dict]:
+    def process_athlete_result_table(self, athlete_id:str, result_table) -> List[Dict]:
+        
+        edition_items = result_table.select('table.table > tbody > tr > td:nth-child(1)')
+        sport_items = result_table.select('table.table > tbody > tr > td:nth-child(2) > a:nth-child(1)')
+        noc_items = result_table.select('table.table > tbody > tr > td:nth-child(3)')
+        pos_items = result_table.select('table.table > tbody > tr > td:nth-child(4)')
+        medal_items = result_table.select('table.table > tbody > tr > td:nth-child(5)')
+        name_items = result_table.select('table.table > tbody > tr > td:nth-child(6)')
         # Create & Insert athlete info
-        olympic_games = [item.get_text() for item in olympic_games_items]
-        disciplines = [item.get_text() for item in discipline_items]
+        olympic_games = [item.get_text() for item in edition_items]
+        disciplines = [item.get_text() for item in sport_items]
+        results_ids = [item['href'].split('/')[2] for item in sport_items]
+
         noc = [item.get_text() for item in noc_items] 
         pos = [item.get_text() for item in pos_items]
         medals = [item.get_text() for item in medal_items]
-        result_table = []
+        name = [item.get_text() for item in name_items]
+        athlete_results = []
         # Getting the olympic games and sport
         cur_olympic_game = ''
         cur_dicipline = ''
         cur_noc = ''
+        cur_name = ''
         for i in range(len(olympic_games)):
             if olympic_games[i].strip() != '':
                 cur_olympic_game = olympic_games[i].strip()
                 cur_dicipline = disciplines[i]
                 cur_noc = noc[i]
+                cur_name = name[i]
             else:
                 event_result = {
-                    'athlete_id': athlete_id,
-                    'olympic_game': cur_olympic_game,
-                    'dicipline': cur_dicipline,
+                    'edition': cur_olympic_game,
+                    'country_noc': cur_noc,
+                    'sport': cur_dicipline,
                     'event': disciplines[i],
-                    'noc': cur_noc,
+                    'result_id': results_ids[i],
+                    'athlete': cur_name,
+                    'athlete_id': athlete_id,
                     'pos': pos[i],
                     'medals': medals[i]
                 }
-                result_table.append(event_result)
-        return result_table
+                athlete_results.append(event_result)
+        return athlete_results
+
+    def get_html_from_result_id(self, result_id: str):
+        result_page = requests.get(self.base_url + '/results/' + result_id)
+        result_soup = BeautifulSoup(result_page.content, 'html.parser')
+        return result_soup.prettify('utf-8')

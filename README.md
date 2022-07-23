@@ -2,7 +2,7 @@
 
 **Date**: 28/07/2022
 
-**Author**: Joseph
+**Author**: Joseph Cheng
 
 **Base URL**: http://www.olympedia.org/
 
@@ -55,3 +55,5 @@ Perform web scraping on the olympedia website to obtain information on the olymp
 2. https://katstam.com/regression-feature_importance/
 3. https://www.kaggle.com/code/saxinou/imbalanced-data-xgboost-tunning
 4. https://www.kaggle.com/code/carlosdg/xgboost-with-scikit-learn-pipeline-gridsearchcv/notebook
+5. https://www.kaggle.com/code/alexisbcook/xgboost
+6. https://towardsdatascience.com/understanding-feature-engineering-part-2-categorical-data-f54324193e63
