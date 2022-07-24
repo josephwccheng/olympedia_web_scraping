@@ -6,3 +6,6 @@ eli5
 xgboost
 numpy
 matplotlib
+mockito
+pytest
+lxml

@@ -3,7 +3,7 @@
 # Note: this project is for non-commercial purposes
 
 
-from olympedia_scraping import OlympediaScraper
+from olympedia_scraper import OlympediaScraper
 from os.path import exists
 import csv
 import pandas as pd
@@ -17,27 +17,27 @@ from multiprocessing import Pool, cpu_count
 import concurrent.futures
 
 
-def get_event_athelete_results_from_country_into_csv(country_noc:str, file_path: str='data/Olympic_Athlete_Event_Results_test.csv'):
-    event_athelete_results = olympic_scraper.get_event_athletes_results_from_country(country_noc)
+def get_event_athlete_results_from_country_into_csv(country_noc:str, file_path: str='data/Olympic_Athlete_Event_Results_test.csv'):
+    event_athlete_results = olympic_scraper.get_event_athletes_results_from_country(country_noc)
     with open(file_path, 'a+', newline='') as f:
         writer= csv.writer(f)
-        if event_athelete_results is not None:
-            for event_athelete_result in event_athelete_results:
-                writer.writerow(list(event_athelete_result.values()))
+        if event_athlete_results is not None:
+            for event_athlete_result in event_athlete_results:
+                writer.writerow(list(event_athlete_result.values()))
     return country_noc
 
 
-def get_athelete_bio_and_results_into_csv(athlete_id:str, bio_file_path: str='data/Olympic_Athlete_Bio_test.csv', event_file_path='data/Olympic_Athlete_Event_Results_test_2.csv'):
+def get_athlete_bio_and_results_into_csv(athlete_id:str, bio_file_path: str='data/Olympic_Athlete_Bio_test.csv', event_file_path='data/Olympic_Athlete_Event_Results_test_2.csv'):
 
     athlete_bio_and_results = olympic_scraper.get_bio_and_results_from_athlete_id(athlete_id)
     with open(bio_file_path, 'a+', newline='') as f_bio, open(event_file_path, 'a+', newline='') as f_events:
         writer_bio = csv.writer(f_bio)
         writer_events = csv.writer(f_events)
 
-        athlete_bio = athlete_bio_and_results['athelete_bio_info']
+        athlete_bio = athlete_bio_and_results['athlete_bio_info']
         writer_bio.writerow(list(athlete_bio.values()))
 
-        athlete_results = athlete_bio_and_results['athelete_results']
+        athlete_results = athlete_bio_and_results['athlete_results']
         for athlete_result in athlete_results:
             writer_events.writerow(list(athlete_result.values()))
     return athlete_id
@@ -95,7 +95,7 @@ if __name__ == "__main__":
             writer.writerow(event_athletes_header)
         with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
             # map will print the result in order
-            results = list(tqdm(executor.map(get_event_athelete_results_from_country_into_csv, country_noc), total=len(country_noc)))
+            results = list(tqdm(executor.map(get_event_athlete_results_from_country_into_csv, country_noc), total=len(country_noc)))
         
         print(f'3. {olympic_athlete_event_results_csv_path} file created!')
     else:
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # 4. Get Distinct Athlete ID and Event Information into new CSV Files
     if not exists(distinct_athlete_id_csv_path) and not exists(distinct_result_id_csv_path):
         if exists(olympic_athlete_event_results_csv_path):
-            athlte_id_header = ['athelete_id']
+            athlte_id_header = ['athlete_id']
             result_id_header = ['result_id']
             athlete_event_results_df = pd.read_csv(olympic_athlete_event_results_csv_path)
             distinct_athlete_id_list = set(athlete_event_results_df['athlete_id'].astype(str).values.tolist())
@@ -126,7 +126,7 @@ if __name__ == "__main__":
         print(f'4. {distinct_athlete_id_csv_path} and {distinct_result_id_csv_path} already exist')
 
 
-    # 5. Get athelete bio information and results from all the events they parcipated in
+    # 5. Get athlete bio information and results from all the events they parcipated in
     if not exists(olympic_athlete_event_results_csv_path_2) and not exists(olympic_athlete_bio_csv_path):
         if exists(distinct_athlete_id_csv_path):
             with open(distinct_athlete_id_csv_path) as csv_file:
@@ -143,7 +143,7 @@ if __name__ == "__main__":
             
             with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
                 # map will print the result in order
-                results = list(tqdm(executor.map(get_athelete_bio_and_results_into_csv, athlete_ids[1:]), total=len(athlete_ids[1:])))
+                results = list(tqdm(executor.map(get_athlete_bio_and_results_into_csv, athlete_ids[1:]), total=len(athlete_ids[1:])))
             print(f'5. {olympic_athlete_bio_csv_path} and {olympic_athlete_event_results_csv_path_2} files created!')  
         else:
             print(f'5. {distinct_athlete_id_csv_path} doesn\'t exist')

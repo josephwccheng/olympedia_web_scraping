@@ -36,7 +36,7 @@ Perform web scraping on the olympedia website to obtain information on the olymp
     - Edition, As, Men, Women, Total, Results
         - Edition - yyyy Season Olympics
 -  /countries/Country_Noc>/editions/Index
-    - Sport, Athelete, Rank, Medal
+    - Sport, athlete, Rank, Medal
 - /athletes/athlete_id
 
 ## Meta Data for Kaggle Dataset

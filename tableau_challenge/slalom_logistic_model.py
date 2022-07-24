@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 """
 Main Objective:
-    - Create three models to predict the probability of an athelete winning a medal "Medal Count"
+    - Create three models to predict the probability of an athlete winning a medal "Medal Count"
         - All Feature Columns 
         - Filter "Sport" to "Aquatics"
         - Filter "Event" to "Slalom" and "Giant Slalom"
