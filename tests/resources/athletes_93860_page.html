@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Olympedia – Michael Phelps</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="BaQqv+fDXy3Ydk3d+O0LCHT9FQwamx2GvFVH3bNiWYNYcrmdCDksaFknAU+mrVllHQPOIXZs89+EDIi1ndv1dA==" />
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='EN' http-equiv='content-language'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link rel="stylesheet" media="all" href="/assets/bootstrap.min-460a43de22fd9534d595e5aea2715cb154560291c9c6401b526e31c86a5ce32d.css" />
+<link rel="stylesheet" media="all" href="/assets/bootstrap-sortable-363d232309d54b549fa85446295ef2b5d290e3f8a49f1a646247340be3705ef9.css" />
+<link rel="stylesheet" media="all" href="/assets/jquery-ui-1.11.4.min-359ba1b9eb679ad05fb4c8fda710ee4c0239354f1ba635200b6065638295d646.css" />
+<link rel="stylesheet" media="screen" href="/assets/lightbox-e29689e123fc27505d2b9d919f43ffcb6fade539cb4670f21c35aa07848105e7.css" />
+<link rel="stylesheet" media="all" href="/assets/application-063bf507cdbf9c8a3683aa1c2a53f4c5726d17772a8e3e988ef6b824cbc9f7b4.css" data-turbolinks-track="true" />
+<link rel="stylesheet" media="screen" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" />
+<script src="/assets/application-e1a1e4d6a20243befcce18acb216d9b0e6082405323ce1f5dfbf47c401111aa1.js" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-1.11.2.min-cc83565074b3fa7f2283f7f4d56b90ad171ede87008448ed5d2e91c50575bed1.js"></script>
+<script src="/assets/jquery-ui-1.11.4.min-1f37fd37d8db0404488ac8f6505560e48d1364ef1c81e384ac695e143049ab0f.js"></script>
+<script src="/assets/bootstrap.min-81d6fe3a991358b79b083d075ca476712c9f11c5c890047486176bde863c499e.js"></script>
+<script src="/assets/moment-ded3cbd5de5ae075c44be4149abb630c658e8789f17ccfb162e6bb7664e8bec9.js"></script>
+<script src="/assets/bootstrap-sortable-cd614fbc8d2030bc050ce63652169ed36d970209a94062fa218c631f2c04dc9f.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+
+</head>
+
+<body>
+<div class='navbar navbar-default navbar-fixed-top' role='navigation'>
+<div class='navbar-header'>
+<div class='button navbar-toggle' data-target='.navbar-ex1-collapse' data-toggle='collapse' type='button'>
+<span class='sr-only'>Toggle navigation</span>
+<span class='icon-bar'>
+<span class='icon-bar'>
+<span class='icon-bar'></span>
+</span>
+</span>
+</div>
+<a class='navbar-brand' href='/'>Olympedia</a>
+</div>
+<div class='collapse navbar-collapse navbar-ex1-collapse'>
+<ul class='nav navbar-nav'>
+<li class='dropdown'>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+Athletes
+<b class='caret'></b>
+</a>
+<ul class='dropdown-menu'>
+<li><a href="/athletes/advanced_search">Advanced search</a></li>
+<li><a href="/horses">Horse search</a></li>
+<li><a href="/family_relations">Related Olympians</a></li>
+<li><a href="/counts">Counts</a></li>
+<li><a href="/athletes/doubles">Doubles</a></li>
+<li><a href="/athletes/lists">Lists</a></li>
+<li class='divider'></li>
+<li><a href="/athletes">Athletes</a></li>
+</ul>
+</li>
+
+<li class='dropdown'>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+Countries
+<b class='caret'></b>
+</a>
+<ul class='dropdown-menu'>
+<li><a href="/countries/head_to_head">Head-to-head</a></li>
+<li><a href="/countries/best_results">Best results</a></li>
+<li><a href="/countries/comparison">Results comparison</a></li>
+<li class='divider'></li>
+<li><a href="/countries">Countries</a></li>
+</ul>
+</li>
+
+<li class='dropdown'>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+Games
+<b class='caret'></b>
+</a>
+<ul class='dropdown-menu'>
+<li><a href="/editions">Games</a></li>
+<li><a href="/editions/medals">Medals</a></li>
+<li><a href="/editions/results">Results</a></li>
+<li><a href="/ceremonies">Opening ceremony</a></li>
+<li><a href="/venues/menu">Venues</a></li>
+</ul>
+</li>
+
+<li class='dropdown'>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+Sports
+<b class='caret'></b>
+</a>
+<ul class='dropdown-menu'>
+<li><a href="/sports">Disciplines &amp; Sports</a></li>
+<li><a href="/event_names">Events</a></li>
+</ul>
+</li>
+
+<li class='dropdown'>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+IOC
+<b class='caret'></b>
+</a>
+<ul class='dropdown-menu'>
+<li><a href="/organizations">Organizations</a></li>
+<li><a href="/definitions">Definitions</a></li>
+<li><a href="/meetings">Meetings</a></li>
+<li><a href="/ioc/host_cities">Host city selection</a></li>
+</ul>
+</li>
+
+<li class='dropdown'>
+<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+Statistics
+<b class='caret'></b>
+</a>
+<ul class='dropdown-menu'>
+<li></li>
+<li><a href="/statistics/medal/country">Medals by country</a></li>
+<li><a href="/statistics/medal/athlete">Medals by athlete</a></li>
+<li><a href="/statistics/medal_table">Medal tables</a></li>
+<li><a href="/statistics/participation">Participations</a></li>
+<li><a href="/statistics/age">Age records</a></li>
+<li><a href="/lists">Lists</a></li>
+<li><a href="/today">Today</a></li>
+<li></li>
+<li class='divider'></li>
+<li><a href="/statistics">Statistics</a></li>
+</ul>
+</li>
+
+
+
+
+<li><a href="/feedbacks/new">Feedback</a></li>
+<form class="navbar-form navbar-left" role="search" action="/athletes/quick_search" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="804Ky4p1zCTo4UHp4fb8nJ1oSkdKfXyPTyEFXUUgBvdoLmZAfsNfcBmQlagp8mT6ybm14f3DjwtjcK7GCWDlLw==" />
+<div class='form-group'>
+<input type="text" name="query" id="query" class="form-control" placeholder="Athlete search" />
+</div>
+<input type="submit" name="commit" value="Go" class="btn btn-default" data-disable-with="Go" />
+</form>
+
+
+</ul>
+</div>
+</div>
+<div class='container'>
+<ol class='breadcrumb'>
+<li>
+<a href='/'>Home</a>
+</li>
+<li><a href="/athletes">Athletes</a></li><li class="active">Michael Phelps</li>
+</ol>
+<h1>
+Michael Phelps
+<a href="http://d2a3o6pzho379u.cloudfront.net/93860.jpg" rel="lightbox" title="Photo of Michael Phelps"><img src="/images/photo.png" /></a>
+</h1>
+<form class="form-inline" action="/athletes/93860/merge" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="dOLGcZOD1I+zDhx1qhrrga+b3pTcLa9quruVb02JtIfCGS/Ca3q1yGItid4M3P5GnxznTAT9QmmWAc2MqAhptA==" />
+
+
+
+</form>
+
+
+<h2>
+Biographical information
+</h2>
+<div class='athlete_sidebar'>
+<table>
+<tbody>
+<tr>
+<td>
+<b>Medals</b>
+</td>
+<td>OG</td>
+</tr>
+<tr>
+<td><span class="Gold">Gold</span></td>
+<td>23</td>
+</tr>
+<tr>
+<td><span class="Silver">Silver</span></td>
+<td>3</td>
+</tr>
+<tr>
+<td><span class="Bronze">Bronze</span></td>
+<td>2</td>
+</tr>
+<tr>
+<td class='border-top'>Total</td>
+<td class='border-top'>28</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<table class='biodata'>
+
+<tr><th>Type</th><td>Competed in Olympic Games</td></tr>
+<tr><th>Sex</th><td>Male</td></tr>
+<tr><th>Full name</th><td>Michael Fred•Phelps, II</td></tr>
+<tr><th>Used name</th><td>Michael•Phelps</td></tr>
+<tr><th>Nick/petnames</th><td>The Baltimore Bullet</td></tr>
+
+
+
+<tr><th>Born</th><td>30 June 1985 in <a href="/place_names/4423">Baltimore, Maryland (USA)</a></td></tr>
+
+<tr><th>Measurements</th><td>193 cm / 91 kg</td></tr>
+<tr><th>Affiliations</th><td><a href="/affiliations/6636">NBAC, Baltimore (USA)</a> / <a href="/affiliations/3411">Michigan Wolverines, Ann Arbor (USA)</a></td></tr>
+
+<tr><th>NOC</th><td><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" /> <a href="/countries/USA">United States</a></td></tr>
+
+</table>
+
+<h2>
+Biography
+
+</h2>
+<div class='description'>
+<p>Michael Phelps’ performances at the 2004-16 Olympics have brought him strong consideration as the greatest ever Olympian. He has surpassed the records of <a href="/athletes/51572">Mark Spitz</a> and <a href="/athletes/51611">Johnny Weissmuller</a> and is considered the greatest swimmer ever. Phelps swims several strokes, including butterfly and freestyle, but his best events are the individual medleys. At the 2004 Olympic Games, Michael Phelps became only the second athlete, after <a href="/athletes/31244">Aleksandr Dityatin</a> (URS-GYM-1980) to win eight medals at a single Olympics, and he repeated this in 2008 at Beijing. Phelps had attempted to win gold medals in eight swimming events in 2004, to better Mark Spitz’s performance at München. Phelps did not manage that but did win six gold medals (four individual) and two bronze medals. He followed this with a dominating performance at the 2005 World Championships at which he won five gold medals and a silver medal. He had also won five World Championship gold medals at the 2003 meet.</p>
+
+<p>Phelps not only did not stop competing but pushed his records even further. At the 2007 World Championships he entered eight events and won seven gold medals, losing out on the eighth in the 4×100 medley relay, when the USA was disqualified in an early round heat in which he had sat out. He seemed poised to challenge Spitz’s 1972 mark of seven gold medals. At Beijing Phelps again entered eight events and this time he came thru with a victory in all eight, becoming the first Olympian to win eight gold medals at one Olympic Games.</p>
+
+<p>After Beijing, Phelps took some time off and also had some problems with substance abuse and spent time in rehab. He did not train as hard for a time, but he still won five gold medals and six medals at the 2009 World Championships. He won another five golds at the 2010 Pan-Pacs, and in 2011, won four gold medals and seven medals at the Worlds, setting him up for the 2012 Olympics, and giving him a total of 33 medals and 26 gold medals at the World Championships.</p>
+
+<p>At London in 2012, Phelps cemented his title as the world’s greatest swimmer and, to many people, as the world’s greatest Olympian. He won four more gold medals and six medals, but actually failed to medal in one event in 2012, placing fourth in the 400 IM. His six medals in 2012 left him with absolute Olympic records of 22 medals and 18 gold medals. Phelps then announced his retirement, although in 2013 he hedged that a bit, and returned to the pool for Rio 2016.</p>
+
+<p>At Rio in 2016, Phelps won an additional six medals with five gold medals, extending his Olympic best marks to 28 medals and 23 gold medals, marks that may never be approached. He retired, seemingly for good, after the Rio Olympics.</p>
+
+</div>
+
+<h2>Results</h2>
+<table class='table'>
+<thead>
+<tr>
+<th>Games</th>
+<th>Discipline (Sport) / Event</th>
+<th>NOC / Team</th>
+<th>Pos</th>
+<th>Medal</th>
+<th>As</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class='active'>
+<td>
+<a href="/editions/25">2000 Summer Olympics</a>
+</td>
+<td><a href="/sports/SWM">Swimming</a> (<a href="/sport_groups/AQ">Aquatics</a>)</td>
+<td><a href="/countries/USA"><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" />USA</a></td>
+<td></td>
+<td></td>
+<td>Michael Phelps</td>
+<td>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8466">200 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class='active'>
+<td>
+<a href="/editions/26">2004 Summer Olympics</a>
+</td>
+<td><a href="/sports/SWM">Swimming</a> (<a href="/sport_groups/AQ">Aquatics</a>)</td>
+<td><a href="/countries/USA"><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" />USA</a></td>
+<td></td>
+<td></td>
+<td>Michael Phelps</td>
+<td>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8772">200 metres Freestyle, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>3</td>
+<td><span class="Bronze">Bronze</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8898">4 × 100 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>3</td>
+<td><span class="Bronze">Bronze</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8912">4 × 200 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8852">100 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8866">200 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8877">200 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8890">400 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/8926">4 × 100 metres Medley Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class='active'>
+<td>
+<a href="/editions/53">2008 Summer Olympics</a>
+</td>
+<td><a href="/sports/SWM">Swimming</a> (<a href="/sport_groups/AQ">Aquatics</a>)</td>
+<td><a href="/countries/USA"><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" />USA</a></td>
+<td></td>
+<td></td>
+<td>Michael Phelps</td>
+<td>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261502">200 metres Freestyle, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261632">4 × 100 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261646">4 × 200 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261586">100 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261601">200 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261613">200 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261625">400 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/261660">4 × 100 metres Medley Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class='active'>
+<td>
+<a href="/editions/54">2012 Summer Olympics</a>
+</td>
+<td><a href="/sports/SWM">Swimming</a> (<a href="/sport_groups/AQ">Aquatics</a>)</td>
+<td><a href="/countries/USA"><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" />USA</a></td>
+<td></td>
+<td></td>
+<td>Michael Phelps</td>
+<td>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322069">4 × 100 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>2</td>
+<td><span class="Silver">Silver</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322165">4 × 200 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322289">100 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322143">200 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>2</td>
+<td><span class="Silver">Silver</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322251">200 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322007">400 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/322344">4 × 100 metres Medley Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class='active'>
+<td>
+<a href="/editions/59">2016 Summer Olympics</a>
+</td>
+<td><a href="/sports/SWM">Swimming</a> (<a href="/sport_groups/AQ">Aquatics</a>)</td>
+<td><a href="/countries/USA"><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" />USA</a></td>
+<td></td>
+<td></td>
+<td>Michael Phelps</td>
+<td>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/357127">4 × 100 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/357141">4 × 200 metres Freestyle Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/357088">100 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>=2</td>
+<td><span class="Silver">Silver</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/357100">200 metres Butterfly, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/357110">200 metres Individual Medley, Men</a>
+<small>(Olympic)</small>
+</td>
+<td></td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<a href="/results/357155">4 × 100 metres Medley Relay, Men</a>
+<small>(Olympic)</small>
+</td>
+<td>United States</td>
+<td>1</td>
+<td><span class="Gold">Gold</span></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h2>Other participations</h2>
+<table class='table table-striped'>
+<thead>
+<tr>
+<th>Games</th>
+<th>Role</th>
+<th>NOC</th>
+<th>As</th>
+<th></th>
+</tr>
+</thead>
+<tr>
+<td><a href="/editions/59">2016 Summer Olympics</a></td>
+<td><a href="/flagbearers?edition_id=59">Flagbearer at the Opening Ceremony</a></td>
+<td><a href="/countries/USA"><img style="padding-right: 2px; vertical-align: middle" src="/images/flags/USA.png" />USA</a></td>
+<td>Michael Phelps</td>
+<td>
+</td>
+</tr>
+</table>
+
+
+<h2>Special Notes</h2>
+<ul>
+<li>
+Listed in <a href="/lists/18/manual">Olympic Swimmers - Doubles Champions, Same Year</a>
+(2004 / 2008 100/200 Butterfly Champion.)
+</li>
+<li>
+Listed in <a href="/lists/18/manual">Olympic Swimmers - Doubles Champions, Same Year</a>
+(2004 / 2008 200/400 Individual Medley Double Champion.)
+</li>
+<li>
+Listed in <a href="/lists/64/manual">Olympians Who Were Named Sports Illustrated&#39;s Sportsman of the Year</a>
+(Eight Gold Medals in 2008 Olympic Games, 2008 Sports Illustrated Sportsman of the Year)
+</li>
+<li>
+Listed in <a href="/lists/131/manual">Olympians Who Were Awarded the James E. Sullivan Award</a>
+(2003)
+</li>
+<li>
+Listed in <a href="/lists/148/manual">Olympians Who Won a Medal at the World Short-Course Swimming Championships (25 m)</a>
+(1–0–0 2004 Indianapolis gold: 200 m freestyle)
+</li>
+<li>
+Listed in <a href="/lists/149/manual">Olympians Who Won a Medal at the Pan Pacific Swimming Championships</a>
+(16–5–0 2002 Yokohama gold: 200 m medley, 400 m medley, and 4×100 m medley relay, silver: 200 m butterfly and 4×200 m freestyle relay; 2006 Victoria gold: 200 m butterfly, 200 m medley, 400 m medley, 4×100 m freestyle relay, and 4×200 m freestyle relay, silver: 200 m backstroke; 2010 Irvine gold: 100 m butterfly, 200 m butterfly, 4×100 m freestyle relay, 4×200 m freestyle relay, and 4×100 m medley relay; 2014 Gold Coast gold: 100 m butterfly, 4×200 m freestyle relay, and 4×100 m medley relay, silver: 200 m medley and 4×100 m freestyle relay)
+</li>
+<li>
+Listed in <a href="/lists/183/manual">Olympians Who Set a World Record in Short Course Swimming</a>
+(4×100 m freestyle relay – 19 December 2009 - 11 December 2018: 3:03.30 (19 December 2009; Manchester, GBR); 4×100 m medley relay – 18 December 2009 - 20 December 2009: 3:20.71 (18 December 2009; Manchester, GBR))
+</li>
+<li>
+Listed in <a href="/lists/144/manual">Olympians Who Won a Medal at the World Aquatics Championships</a>
+(26–6–1 2001 Fukuoka SWI gold: 200 m butterfly; 2003 Barcelona SWI gold: 200 m butterfly, 200 m medley, 400 m medley, and 4×100 m medley relay (swam in heats only), silver: 100 m butterfly and 4×200 m freestyle relay; 2005 Montréal SWI gold: 200 m freestyle, 200 m medley, 4×100 m freestyle relay, 4×200 m freestyle relay, and 4×100 m medley relay (swam in heats only), silver: 100 m butterfly; 2007 Melbourne SWI gold: 200 m freestyle, gold: 100 m butterfly, 200 m butterfly, 200 m medley, 400 m medley, 4×100 m freestyle relay, and 4×200 m freestyle relay; 2009 Roma SWI gold: 100 m butterfly, 200 m butterfly, 4×100 m freestyle relay, 4×200 m freestyle relay, and 4×100 m medley relay, silver: 200 m freestyle; 2011 Shanghai SWI gold: 100 m butterfly, 200 m butterfly, 4×200 m freestyle relay, and 4×100 m medley relay, silver: 200 m freestyle and 200 m medley, bronze: 4×100 m freestyle relay)
+</li>
+<li>
+Listed in <a href="/lists/68/manual">Current Olympic Record Holders in Swimming</a>
+(200 m freestyle 1:42.96 (2008), 200 m medley 1:54.23 (2008), 400 m medley 4:03.84 (2008), 4×100 m freestyle relay 3:08.24 (2008), 4×200 m freestyle relay 6:58.56 (2008))
+</li>
+<li>
+Listed in <a href="/lists/120/manual">Current World Record Holders in Swimming</a>
+(400 m medley 4:03.84 (2008 at the Olympics), 4×100 m freestyle relay 3:08.24 (2008 at the Olympics), and 4×200 m freestyle relay 6:58.55 (2009))
+</li>
+<li>
+Listed in <a href="/lists/182/manual">Olympians Who Set a World Record in Long Course Swimming</a>
+(200 m freestyle – 27 March 2007 - 28 July 2009: 1:43.86 (27 March 2007; Melbourne, AUS), 1:42.96 (12 August 2008; Beijing, CHN); 100 m butterfly – 25 July 2003 - 26 July 2003, 9 July 2009 - 31 July 2009, and 1 August 2009 - 26 July 2019: 51.47 (25 July 2003; Barcelona, ESP), 50.22 (9 July 2009; Indianapolis, USA), 49.82 (1 August 2009; Roma, ITA); 200 m butterfly – 30 March 2001 - 24 July 2019: 1:54.92 (30 March 2001; Austin, USA), 1:54.58 (24 July 2001; Fukuoka, JPN), 1:53.93 (22 July 2003; Barcelona, ESP), 1:53.80 (17 August 2006; Victoria, CAN), 1:53.71 (17 February 2007; Columbia, USA), 1:52.09 (28 March 2007; Melbourne, AUS), 1:52.03 (13 August 2008; Beijing, CHN), 1:51.51 (21 July 2009; Roma, ITA); 200 m medley – 29 June 2003 - 30 July 2009: 1:57.94 (29 June 2003; Santa Clara, USA), 1:57.52 (24 July 2003; Barcelona, ESP), 1:56.04 (25 July 2003; Barcelona, ESP), 1:55.94 (9 August 2003; College Park, USA), 1:55.84 (20 August 2006; Victoria, CAN), 1:54.98 (29 March 2007; Melbourne, AUS), 1:54.80 (4 July 2008; Omaha, USA), 1:54.23 (15 August 2008; Beijing, CHN); 400 m medley – 15 August 2002 - present: 4:11.09 (15 August 2002; Fort Lauderdale, USA), 4:10.73 (7 April 2003; Indianapolis, USA), 4:09.09 (27 July 2003; Barcelona, ESP), 4:08.41 (7 July 2004; Long Beach, USA), 4:08.26 (14 August 2004; Athina, GRE), 4:06.22 (1 April 2007; Melbourne, AUS), 4:05.25 (29 June 2008; Omaha, USA), 4:03.84 (10 August 2008; Beijing, CHN); 4×100 m freestyle relay – 19 August 2006 - 10 August 2008 and 11 August 2008 - 26 September 2013: 3:12.46 (19 August 2006; Victoria, CAN), 3:08.24 (11 August 2008; Beijing, CHN); 4×200 m freestyle relay – 30 March 2007 - present: 7:03.24 (30 March 2007; Melbourne, AUS), 6:58.56 (13 August 2008; Beijing, CHN), 6:58.55 (31 July 2009; Roma, ITA); 4×100 m medley relay – 29 August 2002 - 27 July 2003 and 17 August 2008 - 1 August 2021: 3:33.48 (29 August 2002; Yokohama, JPN), 3:29.34 (17 August 2008; Beijing, CHN), 3:27.28 (2 August 2009; Roma, ITA))
+</li>
+</ul>
+
+
+
+
+</div>
+</body>
+<footer class='footer'>
+<br>
+<div class='panel panel-info'>
+<div class='panel-heading'>
+<h3 class='panel-title'>
+<span class='glyphicon glyphicon-info-sign'></span>
+Did you know?
+</h3>
+</div>
+<div class='panel-body'>
+<p><a href="/athletes/128788">Eddy Alvarez</a> competed in short track speed skating at the 2014 Winter Olympics and in baseball at the 2020 Summer Olympics and won a silver medal in both.</p>
+
+
+</div>
+</div>
+<div class='container'>
+<p>
+<a href="/users/sign_in">Login</a>
+|
+<a href="/statistics/olympedia">Statistics</a>
+|
+<a href="/static/about">About</a>
+|
+<a href="/static/faq">FAQ</a>
+|
+<a href="/feedbacks/new">Feedback</a>
+</p>
+<p>
+&copy; <a href="/static/about">OlyMADMen</a> 2006 — 2022
+</p>
+</div>
+</footer>
+
+<script src="/assets/lightbox.min-40fdcc195c5982250c8901f2c160e15342941a311faf6372c04117c0d9c44bc7.js"></script>
+<script>
+  $('.footnote').tooltip();
+</script>
+</html>

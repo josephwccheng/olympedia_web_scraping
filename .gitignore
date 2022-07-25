@@ -6,7 +6,7 @@ env/*
 
 ##
 ## RESULT HTML Files - Too Large to store in repository
-## 
+##
 data/raw_result_html_files/*
 
 ##

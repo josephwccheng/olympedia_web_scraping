@@ -61,7 +61,25 @@ class OlympediaScraper():
     # 3. Table of all distinct players
     # Input: country noc
     # Output: list of players who played for the ocuntry
-    def get_event_athletes_results_from_country(self, country_noc: str):
+    # Filters: year_filter - 4 digit year and it will obtain only the olympics from that year onwards
+    #          season_filter - 'all', 'winter' or 'summer'
+    def get_event_athletes_results_from_country(self, country_noc: str, year_filter: str='all', season_filter: str='all'):
+        # Input Filter Check
+        year_filter_flag = False
+        season_filter_flag = False
+        if len(year_filter) == 4 and year_filter.isdigit():
+            year_filter_flag = True
+        elif year_filter != 'all':
+            raise ValueError(
+                "year_filter value incorrect. It must be a 4 digit number or all."
+            )
+        if season_filter.lower() == 'winter' or season_filter.lower() == 'summer':
+            season_filter_flag = True
+        elif season_filter.lower() != 'all':
+            raise ValueError(
+                "season_filter value incorrect. It must be either summer, winter or all."
+            )            
+
         country_page = self.olympedia_client.get_request_content('/countries/' + country_noc, 'get event athletes results from Country noc')
         country_soup = BeautifulSoup(country_page, 'html.parser')
         olympic_table = country_soup.select_one('body > div.container > table:nth-child(11)')
@@ -72,7 +90,18 @@ class OlympediaScraper():
         editions = [edition.text for edition in olympic_table.select('tbody > tr > td:nth-child(1) > a')]
         event_athletes = []
         for edition, result_extension in zip(editions,result_extensions):
-            event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+            year, season, _ = edition.split(' ')
+            if year_filter_flag == True and season_filter_flag == True:
+                if int(year) >= int(year_filter) and season_filter.lower() == season.lower():
+                    event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+            elif year_filter_flag == True and season_filter_flag == False:
+                if int(year) >= int(year_filter):
+                    event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+            elif year_filter_flag == False and season_filter_flag == True:
+                if season_filter.lower() == season.lower():
+                    event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+            else:
+                event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
         return event_athletes
 
     # <Helper Function>
