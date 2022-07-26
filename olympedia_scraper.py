@@ -91,34 +91,30 @@ class OlympediaScraper():
         event_athletes = []
         for edition, result_extension in zip(editions,result_extensions):
             year, season, _ = edition.split(' ')
+            country_result_index = result_extension.split('/')[4]
             if year_filter_flag == True and season_filter_flag == True:
                 if int(year) >= int(year_filter) and season_filter.lower() == season.lower():
-                    event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+                    event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
             elif year_filter_flag == True and season_filter_flag == False:
                 if int(year) >= int(year_filter):
-                    event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+                    event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
             elif year_filter_flag == False and season_filter_flag == True:
                 if season_filter.lower() == season.lower():
-                    event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+                    event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
             else:
-                event_athletes.extend(self._get_event_athlete_from_result_url(result_extension, edition, country_noc))
+                event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
         return event_athletes
 
     # <Helper Function>
     # Get event, athlete information from the result page
-    def _get_event_athlete_from_result_url(self, result_extension: str, edition: str="", country_noc: str=""):
-        index = result_extension.split('/')[4]
-        result_page = self.olympedia_client.get_country_olympic_results_page(country_noc=country_noc, index=index)
+    def _get_event_athlete_from_result_url(self, edition: str="", country_noc: str="", country_result_index: str=""):
+        result_page = self.olympedia_client.get_country_olympic_results_page(country_noc=country_noc, index=country_result_index)
         result_soup = BeautifulSoup(result_page, 'html.parser')
         result_table = result_soup.select_one('table')
         result_rows = result_table.find_all("tr")
         
         event_athletes = []
-        sport = ""
-        event = ""
-        event_url = ""
-        pos =""
-        medal = ""
+        sport, event, event_url, pos, medal = "", "", "", "", ""
         for row in result_rows:
             isAthlete = False
             athlete = ""
