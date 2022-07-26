@@ -13,7 +13,7 @@ class OlympediaScraper():
     # 1. Get Table of all active partipating countries
     # Output Format: [[country_noc, country_name], ... ]
     def get_country_list(self) -> List[list]:
-        countries_page = self.olympedia_client.get_request_content('/countries', 'get countries list')
+        countries_page = self.olympedia_client.get_all_countries_page()
         countries_soup = BeautifulSoup(countries_page, 'html.parser')
         countries_table = countries_soup.select_one('body > div.container > table:nth-child(5)')
         country_nocs = [item.get_text() for item in countries_table.select('tbody > tr > td:nth-child(1) > a')]
@@ -30,7 +30,7 @@ class OlympediaScraper():
     # 2. Creating a dictionary to know the host city for the Olympics
     # Output Format: [[year + season), City, Competition_Date, Held]
     def get_olympics_games(self) -> List[list]:
-        games_page = self.olympedia_client.get_request_content('/editions', 'get Olympic games list')
+        games_page = self.olympedia_client.get_all_editions_page()
         games_soup = BeautifulSoup(games_page, 'html.parser')
         
         summer_table = games_soup.select_one('body > div.container > table:nth-child(5)')
@@ -80,7 +80,7 @@ class OlympediaScraper():
                 "season_filter value incorrect. It must be either summer, winter or all."
             )            
 
-        country_page = self.olympedia_client.get_request_content('/countries/' + country_noc, 'get event athletes results from Country noc')
+        country_page = self.olympedia_client.get_country_page(country_noc)
         country_soup = BeautifulSoup(country_page, 'html.parser')
         olympic_table = country_soup.select_one('body > div.container > table:nth-child(11)')
         if olympic_table is None:
@@ -107,7 +107,8 @@ class OlympediaScraper():
     # <Helper Function>
     # Get event, athlete information from the result page
     def _get_event_athlete_from_result_url(self, result_extension: str, edition: str="", country_noc: str=""):
-        result_page = self.olympedia_client.get_request_content(result_extension, 'get event athlete from result url')
+        index = result_extension.split('/')[4]
+        result_page = self.olympedia_client.get_country_olympic_results_page(country_noc=country_noc, index=index)
         result_soup = BeautifulSoup(result_page, 'html.parser')
         result_table = result_soup.select_one('table')
         result_rows = result_table.find_all("tr")
@@ -175,7 +176,7 @@ class OlympediaScraper():
 
     # Get athlete's biography from athlete's url
     def get_bio_and_results_from_athlete_id(self, athlete_id: str):
-        athlete_page = self.olympedia_client.get_request_content('/athletes/' + athlete_id, 'get bio and results from athlete_id')
+        athlete_page = self.olympedia_client.get_athlete_page(athlete_id)
         athlete_soup = BeautifulSoup(athlete_page, 'html.parser')
         
         # Obtaining athlete bio info
@@ -276,6 +277,6 @@ class OlympediaScraper():
         return athlete_results
 
     def get_html_from_result_id(self, result_id: str):
-        result_page = self.olympedia_client.get_request_content('/results/' + result_id, 'get html from result id')
+        result_page = self.olympedia_client.get_result_page(result_id)
         result_soup = BeautifulSoup(result_page, 'html.parser')
         return result_soup.prettify('utf-8')

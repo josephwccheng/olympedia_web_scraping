@@ -10,7 +10,7 @@ class TestOlympediaScraper(unittest.TestCase):
         COUNTRIES_HTML_PATH = "tests/resources/countries_page.html"
         with open(COUNTRIES_HTML_PATH, "r") as f:
             country_html = f.read()
-        when(olympedia_scraper.olympedia_client).get_request_content('/countries', 'get countries list').thenReturn(
+        when(olympedia_scraper.olympedia_client).get_all_countries_page().thenReturn(
             country_html
         )
         expected_result = [['AFG', 'Afghanistan'], ['ALB', 'Albania'], ['ALG', 'Algeria'], ['ASA', 'American Samoa']]
@@ -24,7 +24,7 @@ class TestOlympediaScraper(unittest.TestCase):
         EDITIONS_HTML_PATH = "tests/resources/editions_page.html"
         with open(EDITIONS_HTML_PATH, "r") as f:
             editions_html = f.read()
-        when(olympedia_scraper.olympedia_client).get_request_content('/editions', 'get Olympic games list').thenReturn(
+        when(olympedia_scraper.olympedia_client).get_all_editions_page().thenReturn(
             editions_html
         )
         result = olympedia_scraper.get_olympics_games()
@@ -45,13 +45,13 @@ class TestOlympediaScraper(unittest.TestCase):
         with open(AUS_2022_WINTER_PATH, "r") as f:
             aus_2022_winter_html = f.read()
 
-        when(olympedia_scraper.olympedia_client).get_request_content('/countries/' + country_noc, 'get event athletes results from Country noc').thenReturn(
+        when(olympedia_scraper.olympedia_client).get_country_page(country_noc).thenReturn(
             aus_html
         )
-        when(olympedia_scraper.olympedia_client).get_request_content('/countries/AUS/editions/61', 'get event athlete from result url').thenReturn(
+        when(olympedia_scraper.olympedia_client).get_country_olympic_results_page(country_noc='AUS',index='61').thenReturn(
             aus_2020_summer_html
         )
-        when(olympedia_scraper.olympedia_client).get_request_content('/countries/AUS/editions/62', 'get event athlete from result url').thenReturn(
+        when(olympedia_scraper.olympedia_client).get_country_olympic_results_page(country_noc='AUS',index='62').thenReturn(
             aus_2022_winter_html
         )
 
@@ -65,7 +65,7 @@ class TestOlympediaScraper(unittest.TestCase):
         assert result_year[0]['edition'] == '2022 Winter Olympics'
         result_season = olympedia_scraper.get_event_athletes_results_from_country(country_noc='AUS', year_filter = 'all', season_filter ='summer')
         assert result_season[0]['edition'] == '2020 Summer Olympics'
-        
+
     def test_get_bio_and_results_from_athlete_id(self):
         olympedia_scraper = OlympediaScraper()
         michael_phelps_id = '93860'

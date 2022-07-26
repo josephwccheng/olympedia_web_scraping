@@ -2,7 +2,6 @@
 # Main Objective: to scrape the data from olympedia.org to proivde the data community with up to date olympian data including players, events, and winter / summer sports
 # Note: this project is for non-commercial purposes
 
-
 from olympedia_scraper import OlympediaScraper
 from os.path import exists
 import csv
