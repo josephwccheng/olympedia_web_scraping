@@ -31,6 +31,10 @@ class OlympediaClient:
         editions_page = self.make_request('/editions', 'get Olympic games page')
         return editions_page.content
 
+    def get_edition_page(self, editions_id: str):
+        edition_page = self.make_request('/editions/' + editions_id, 'get html from result id')
+        return edition_page.content
+
     def get_athlete_page(self, athlete_id: str):
         athlete_page = self.make_request('/athletes/' + athlete_id, 'get bio and results from athlete_id')
         return athlete_page.content

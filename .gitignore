@@ -3,7 +3,8 @@ logs/*
 .DS_Store
 __pycache__/
 env/*
-
+test.py
+test.csv
 ##
 ## RESULT HTML Files - Too Large to store in repository
 ##

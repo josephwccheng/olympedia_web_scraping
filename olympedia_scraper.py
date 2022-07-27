@@ -12,7 +12,7 @@ class OlympediaScraper():
 
     # 1. Get Table of all active partipating countries
     # Output Format: [[country_noc, country_name], ... ]
-    def get_country_list(self) -> List[list]:
+    def get_countries_list(self) -> List[list]:
         countries_page = self.olympedia_client.get_all_countries_page()
         countries_soup = BeautifulSoup(countries_page, 'html.parser')
         countries_table = countries_soup.select_one('body > div.container > table:nth-child(5)')
@@ -34,29 +34,33 @@ class OlympediaScraper():
         games_soup = BeautifulSoup(games_page, 'html.parser')
         
         summer_table = games_soup.select_one('body > div.container > table:nth-child(5)')
-        summer_years = [item.get_text() for item in summer_table.select('tr > td:nth-child(2)')]
-        summer_games = [item + ' Summer Olympics' for item in summer_years]
-        summer_cities = [item.get_text() for item in summer_table.select('tr > td:nth-child(3)')]
-        summer_start_date = [item.get_text() for item in summer_table.select('tr > td:nth-child(5)')]
-        summer_end_date = [item.get_text() for item in summer_table.select('tr > td:nth-child(6)')]
-        summer_held = [item.get_text().strip() for item in summer_table.select('tr > td:nth-child(8)')]
-        
+        summer_extracted = self._extract_content_from_editions_table(summer_table, 'Summer Olympics')
         winter_table = games_soup.select_one('body > div.container > table:nth-child(7)')
-        winter_years = [item.get_text() for item in winter_table.select('tr > td:nth-child(2)')]
-        winter_games = [item + ' Winter Olympics' for item in winter_years]
-        winter_cities = [item.get_text() for item in winter_table.select('tr > td:nth-child(3)')]
-        winter_start_date = [item.get_text() for item in winter_table.select('tr > td:nth-child(5)')]
-        winter_end_date = [item.get_text() for item in winter_table.select('tr > td:nth-child(6)')]
-        winter_held = [item.get_text().strip() for item in winter_table.select('tr > td:nth-child(8)')]
-        
-        games = summer_games + winter_games
-        years = summer_years + winter_years
-        cities = summer_cities + winter_cities
-        start_date = summer_start_date + winter_start_date
-        end_date = summer_end_date + winter_end_date
-        held = summer_held + winter_held
+        winter_extracted = self._extract_content_from_editions_table(winter_table, 'Winter Olympics')
 
-        return [[games[i], years[i], cities[i], start_date[i], end_date[i], held[i]] for i in range(len(years))]
+        games = summer_extracted['games'] + winter_extracted['games']
+        edition_urls = summer_extracted['edition_urls'] + winter_extracted['edition_urls']
+        years = summer_extracted['years'] + winter_extracted['years']
+        cities = summer_extracted['cities'] + winter_extracted['cities']
+        start_date = summer_extracted['start_date'] + winter_extracted['start_date']
+        end_date = summer_extracted['end_date'] + winter_extracted['end_date']
+        competition_date = summer_extracted['competition_date'] + winter_extracted['competition_date']
+        isHeld = summer_extracted['isHeld'] + winter_extracted['isHeld']
+
+        return [[games[i], edition_urls[i], years[i], cities[i], start_date[i], end_date[i], competition_date[i], isHeld[i]] for i in range(len(years))]
+
+    # Helper function for get_olympics game
+    def _extract_content_from_editions_table(self, editions_table, season_olympics:str = ""):
+        edition_url = [item['href'] for item in editions_table.select('tr > td:nth-child(2) > a')]
+        years = [item.get_text() for item in editions_table.select('tr > td:nth-child(2)')]
+        games = [item + f' {season_olympics}' for item in years]
+        cities = [item.get_text() for item in editions_table.select('tr > td:nth-child(3)')]
+        start_date = [item.get_text() for item in editions_table.select('tr > td:nth-child(5)')]
+        end_date = [item.get_text() for item in editions_table.select('tr > td:nth-child(6)')]
+        competition_date = [item.get_text() for item in editions_table.select('tr > td:nth-child(7)')]
+        isHeld = [item.get_text().strip() for item in editions_table.select('tr > td:nth-child(8)')]
+
+        return {'edition_urls': edition_url, 'years': years, 'games': games, 'cities': cities, 'start_date': start_date, 'end_date': end_date, 'competition_date': competition_date, 'isHeld': isHeld}
 
     # 3. Table of all distinct players
     # Input: country noc
@@ -94,20 +98,20 @@ class OlympediaScraper():
             country_result_index = result_extension.split('/')[4]
             if year_filter_flag == True and season_filter_flag == True:
                 if int(year) >= int(year_filter) and season_filter.lower() == season.lower():
-                    event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
+                    event_athletes.extend(self._get_event_athlete_from_result_url(country_noc, country_result_index, edition))
             elif year_filter_flag == True and season_filter_flag == False:
                 if int(year) >= int(year_filter):
-                    event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
+                    event_athletes.extend(self._get_event_athlete_from_result_url(country_noc, country_result_index, edition))
             elif year_filter_flag == False and season_filter_flag == True:
                 if season_filter.lower() == season.lower():
-                    event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
+                    event_athletes.extend(self._get_event_athlete_from_result_url(country_noc, country_result_index, edition))
             else:
-                event_athletes.extend(self._get_event_athlete_from_result_url(edition, country_noc, country_result_index))
+                event_athletes.extend(self._get_event_athlete_from_result_url(country_noc, country_result_index,edition))
         return event_athletes
 
     # <Helper Function>
     # Get event, athlete information from the result page
-    def _get_event_athlete_from_result_url(self, edition: str="", country_noc: str="", country_result_index: str=""):
+    def _get_event_athlete_from_result_url(self, country_noc: str="", country_result_index: str="", edition: str=""):
         result_page = self.olympedia_client.get_country_olympic_results_page(country_noc=country_noc, index=country_result_index)
         result_soup = BeautifulSoup(result_page, 'html.parser')
         result_table = result_soup.select_one('table')
@@ -276,3 +280,17 @@ class OlympediaScraper():
         result_page = self.olympedia_client.get_result_page(result_id)
         result_soup = BeautifulSoup(result_page, 'html.parser')
         return result_soup.prettify('utf-8')
+
+    def get_medal_table_from_editions_id(self, editions_id):
+        medal_page = self.olympedia_client.get_edition_page(editions_id)
+        medal_soup = BeautifulSoup(medal_page, 'html.parser')
+        medal_table = medal_soup.find_all('h2', string='Medal table')[0].find_next()
+
+        country_items = [item.get_text()for item in medal_table.select('table.table > tr > td:nth-child(1)')]
+        noc_items = [item.get_text().lstrip() for item in medal_table.select('table.table > tr > td:nth-child(2)')]
+        gold_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(3)')]
+        silver_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(4)')]
+        bronze_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(5)')]
+        total_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(6)')]
+
+        return {'country':country_items, 'noc':noc_items, 'gold': gold_items, 'silver':silver_items, 'bronze': bronze_items, 'total': total_items}

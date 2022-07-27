@@ -4,7 +4,7 @@ import unittest
 from tests.resources import mock_athletes
 
 class TestOlympediaScraper(unittest.TestCase):
-    def test_get_country_list(self):
+    def test_get_countries_list(self):
         olympedia_scraper = OlympediaScraper()
         # MOCK HTML Response
         COUNTRIES_HTML_PATH = "tests/resources/countries_page.html"
@@ -15,7 +15,7 @@ class TestOlympediaScraper(unittest.TestCase):
         )
         expected_result = [['AFG', 'Afghanistan'], ['ALB', 'Albania'], ['ALG', 'Algeria'], ['ASA', 'American Samoa']]
         
-        result = olympedia_scraper.get_country_list()
+        result = olympedia_scraper.get_countries_list()
         assert result == expected_result
 
     def test_get_olympics_games(self):
@@ -28,9 +28,8 @@ class TestOlympediaScraper(unittest.TestCase):
             editions_html
         )
         result = olympedia_scraper.get_olympics_games()
-        assert result[0] == ['1996 Summer Olympics', '1996', 'Atlanta', '19 July', ' 4 August', '']
+        assert result[0] == ['1996 Summer Olympics', '/editions/24', '1996', 'Atlanta', '19 July', ' 4 August', '20 July –  4 August', '']
 
-    # TODO
     def test_get_event_athletes_results_from_country(self):
         olympedia_scraper = OlympediaScraper()
         country_noc = 'AUS'
@@ -74,6 +73,24 @@ class TestOlympediaScraper(unittest.TestCase):
         athlete_results = result['athlete_results']
         assert athlete_bio['athlete_id'] == mock_athletes.MICHAEL_PHELPS_BIO['athlete_id']
         assert athlete_results[0]['athlete_id'] == michael_phelps_id
+    
+    def test_get_medal_table_from_editions_id(self):
+        olympedia_scraper = OlympediaScraper()
+        tokyo_olympics_2020_id = '61'
+        TOKYO_2020_OLYMPICS_EDITION_PATH = "tests/resources/2020_summer_olympics_editions_page.html"
+        with open(TOKYO_2020_OLYMPICS_EDITION_PATH, "r") as f: 
+            tokyo_2020_edition_html = f.read()
 
+        when(olympedia_scraper.olympedia_client).get_edition_page(tokyo_olympics_2020_id).thenReturn(
+            tokyo_2020_edition_html
+        )
+
+        medal_table = olympedia_scraper.get_medal_table_from_editions_id(tokyo_olympics_2020_id)
+        assert medal_table['country'][0] == 'United States'
+        assert medal_table['noc'][0] == 'USA'
+        assert medal_table['gold'][0] == '39'
+        assert medal_table['silver'][0] == '41'
+        assert medal_table['bronze'][0] == '33'
+        assert medal_table['total'][0] == '113'
 if __name__ == '__main__':
     unittest.main()
