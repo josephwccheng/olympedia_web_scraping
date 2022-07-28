@@ -133,9 +133,23 @@ def get_athlete_bio_and_results_from_athlete_id_list(athlete_ids: list, output_a
     print(f'5. {output_athlete_bio_csv_path} and {output_athlete_event_results_csv_path} files created!')  
 
 # 6. Saving Medal results to CSV file
-def save_medel_results_to_csv(olympic_games_csv_path):
+# TODO - Multi Process to make this faster
+def save_medel_results_to_csv(olympic_games_csv_path: str , output_medal_results_csv_path: str):
     olympic_games_df = pd.read_csv(olympic_games_csv_path)
-    olympic_games_df['games'].astype(str).values.tolist()
+    medal_result = []
+    header = ['game', 'edition_id', 'year', 'country', 'noc', 'gold', 'silver', 'bronze', 'total']
+
+    for _, row in tqdm(olympic_games_df.iterrows(), total= len(olympic_games_df), desc="6. saving medal results from olympic games"): # Loop for each olympic game
+        edition_id = row['edition_url'].split('/')[2]
+        medal_table = olympic_scraper.get_medal_table_from_editions_id(edition_id)
+        if medal_table:
+            for i in range(len(medal_table['country'])):
+                medal_result.append([row['games'], edition_id, row['years'], medal_table['country'][i], medal_table['noc'][i], medal_table['gold'][i], medal_table['silver'][i], medal_table['bronze'][i], medal_table['total'][i]])
+    with open(output_medal_results_csv_path, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(medal_result) 
+    return True
 
 # 7. Download Results html into local repository
 def download_result_html_to_path(event_ids: list, output_result_html_files_path: str):
@@ -163,6 +177,7 @@ if __name__ == "__main__":
     olympic_games_medal_tally = 'data/Olympic_Games_Medal_Tally.csv'
     raw_result_html_files_path = 'data/raw_result_html_files'
 
+    # Note: You can control the trigger to choose which steps you want to run or not
     trigger = {
         'step_1': False,
         'step_2': False,
@@ -212,7 +227,7 @@ if __name__ == "__main__":
     
     # 6. Saving country medal data from the Olympics_Games Csv file
     if trigger['step_6']:
-        save_medel_results_to_csv(olympic_games_csv_path)
+        save_medel_results_to_csv(olympic_games_csv_path, olympic_games_medal_tally)
     else:
         print('step 6 - Saving country medal data from the Olympics_Games Csv file - disabled') 
 

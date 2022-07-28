@@ -284,13 +284,16 @@ class OlympediaScraper():
     def get_medal_table_from_editions_id(self, editions_id):
         medal_page = self.olympedia_client.get_edition_page(editions_id)
         medal_soup = BeautifulSoup(medal_page, 'html.parser')
-        medal_table = medal_soup.find_all('h2', string='Medal table')[0].find_next()
-
-        country_items = [item.get_text()for item in medal_table.select('table.table > tr > td:nth-child(1)')]
-        noc_items = [item.get_text().lstrip() for item in medal_table.select('table.table > tr > td:nth-child(2)')]
-        gold_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(3)')]
-        silver_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(4)')]
-        bronze_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(5)')]
-        total_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(6)')]
-
-        return {'country':country_items, 'noc':noc_items, 'gold': gold_items, 'silver':silver_items, 'bronze': bronze_items, 'total': total_items}
+        medal_table = medal_soup.find_all('h2', string='Medal table')
+        
+        if len(medal_table) > 0:
+            medal_table = medal_table[0].find_next()
+            country_items = [item.get_text()for item in medal_table.select('table.table > tr > td:nth-child(1)')]
+            noc_items = [item.get_text().lstrip() for item in medal_table.select('table.table > tr > td:nth-child(2)')]
+            gold_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(3)')]
+            silver_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(4)')]
+            bronze_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(5)')]
+            total_items = [item.get_text() for item in medal_table.select('table.table > tr > td:nth-child(6)')]
+            return {'country':country_items, 'noc':noc_items, 'gold': gold_items, 'silver':silver_items, 'bronze': bronze_items, 'total': total_items}
+        else:
+            return {}
