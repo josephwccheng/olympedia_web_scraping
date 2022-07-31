@@ -1,4 +1,4 @@
-game,edition_id,year,country,noc,gold,silver,bronze,total
+edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1896 Summer Olympics,1,1896,United States,USA,11,7,2,20
 1896 Summer Olympics,1,1896,Greece,GRE,10,18,19,47
 1896 Summer Olympics,1,1896,Germany,GER,6,5,2,13

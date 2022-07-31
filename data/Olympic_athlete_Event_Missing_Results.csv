@@ -1,0 +1,21 @@
+edition,country_noc,sport,event,result_id,athlete,athlete_id,pos,medal,isTeamSport
+2022 Winter Olympics,USA,Bobsleigh,"Monobob, Women",19019671,Kaillie Humphries,118672,1,Gold,False
+2022 Winter Olympics,USA,Bobsleigh,"Monobob, Women",19019671,Elana Meyers Taylor,118644,2,Silver,False
+2022 Winter Olympics,CAN,Bobsleigh,"Monobob, Women",19019671,Christine de Bruin,136825,3,Bronze,False
+2022 Winter Olympics,GER,Bobsleigh,"Monobob, Women",19019671,Laura Nolte,2301452,4,,False
+2022 Winter Olympics,AUS,Bobsleigh,"Monobob, Women",19019671,Breeana Walker,147822,5,,False
+2022 Winter Olympics,CHN,Bobsleigh,"Monobob, Women",19019671,Huai Mingming,148023,6,,False
+2022 Winter Olympics,SUI,Bobsleigh,"Monobob, Women",19019671,Melanie Hasler,148906,7,,False
+2022 Winter Olympics,CAN,Bobsleigh,"Monobob, Women",19019671,Cynthia Appiah,147913,8,,False
+2022 Winter Olympics,CHN,Bobsleigh,"Monobob, Women",19019671,Ying Qing,148025,9,,False
+2022 Winter Olympics,ROC,Bobsleigh,"Monobob, Women",19019671,Nadezhda Sergeyeva,128310,10,,False
+2022 Winter Olympics,FRA,Bobsleigh,"Monobob, Women",19019671,Margot Boch,2301119,11,,False
+2022 Winter Olympics,ROU,Bobsleigh,"Monobob, Women",19019671,Andreea Grecu,128289,12,,False
+2022 Winter Olympics,GER,Bobsleigh,"Monobob, Women",19019671,Mariama Jamanka,137253,13,,False
+2022 Winter Olympics,AUT,Bobsleigh,"Monobob, Women",19019671,Kati Beierl,136713,14,,False
+2022 Winter Olympics,ITA,Bobsleigh,"Monobob, Women",19019671,Giada Andreutti,148470,15,,False
+2022 Winter Olympics,NED,Bobsleigh,"Monobob, Women",19019671,Karlien Sleper,148662,16,,False
+2022 Winter Olympics,SVK,Bobsleigh,"Monobob, Women",19019671,Vikt�ria _er_ansk�,138683,17,,False
+2022 Winter Olympics,KOR,Bobsleigh,"Monobob, Women",19019671,Kim Yu-Ran,137542,18,,False
+2022 Winter Olympics,JAM,Bobsleigh,"Monobob, Women",19019671,Jazmine Fenlator-Victorian,128682,19,,False
+2022 Winter Olympics,UKR,Bobsleigh,"Monobob, Women",19019671,Lidiya Hunko,149047,20,,False

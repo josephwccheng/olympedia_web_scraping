@@ -63,6 +63,8 @@ def save_country_list_to_csv(olympic_country_csv_path: str=""):
         writer = csv.writer(f)
         writer.writerow(country_header)
         writer.writerows(country_rows)
+        # <BUG FIX> Append Missing Country - ROC to the Country List - Temporary Bug Fix
+        writer.writerow(['ROC', 'Russian Olympic Committee'])
     print(f'1. {olympic_country_csv_path} file created!')
     return True
 
@@ -78,7 +80,6 @@ def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
     return True
 
 # 3. Get all athlete ids and their results
-# TODO - issue with results page not listing all player -> https://www.olympedia.org/countries/CAN/editions/62 -> Monobob
 def save_all_athlete_and_results_from_country_noc_to_csv(country_noc: list, output_athlete_event_results_csv_path: str):
     event_athletes_header = ["edition","country_noc","sport","event","result_id","athlete","athlete_id","pos","medal","isTeamSport"]
     country_noc_threading = [[noc, output_athlete_event_results_csv_path] for noc in country_noc]
@@ -137,7 +138,7 @@ def get_athlete_bio_and_results_from_athlete_id_list(athlete_ids: list, output_a
 def save_medel_results_to_csv(olympic_games_csv_path: str , output_medal_results_csv_path: str):
     olympic_games_df = pd.read_csv(olympic_games_csv_path)
     medal_result = []
-    header = ['game', 'edition_id', 'year', 'country', 'noc', 'gold', 'silver', 'bronze', 'total']
+    header = ['edition', 'edition_id', 'year', 'country', 'country_noc', 'gold', 'silver', 'bronze', 'total']
 
     for _, row in tqdm(olympic_games_df.iterrows(), total= len(olympic_games_df), desc="6. saving medal results from olympic games"): # Loop for each olympic game
         edition_id = row['edition_url'].split('/')[2]
@@ -171,7 +172,7 @@ if __name__ == "__main__":
     olympic_games_csv_path = 'data/Olympics_Games.csv'
     olympic_athlete_bio_csv_path = 'data/Olympic_Athlete_Bio.csv'
     olympic_athlete_event_results_csv_path = 'data/Olympic_Athlete_Event_Results.csv'
-    olympic_athlete_event_results_csv_path_2 = 'data/Olympic_Athlete_Event_Results_2.csv'
+    olympic_athlete_event_results_csv_path_2 = 'data/Olympic_Athlete_Event_Results_Athlete_Based.csv'
     distinct_athlete_id_csv_path = 'data/_distinct_athlete_id.csv'
     distinct_result_id_csv_path = 'data/_distinct_result_id.csv'
     olympic_games_medal_tally = 'data/Olympic_Games_Medal_Tally.csv'
@@ -206,6 +207,12 @@ if __name__ == "__main__":
         country_rows = olympic_scraper.get_countries_list()
         country_noc = [i[0] for i in country_rows]
         save_all_athlete_and_results_from_country_noc_to_csv(country_noc, olympic_athlete_event_results_csv_path)
+        # <BUG FIX> - issue with results page not listing all player -> https://www.olympedia.org/countries/CAN/editions/62 -> Monobob
+        # Temporary fix by manually adding in the data values
+        olympic_athlete_event_missing_result_csv_path = 'data/Olympic_athlete_Event_Missing_Results.csv'
+        combined_results_df = pd.concat(pd.read_csv(f) for f in [olympic_athlete_event_results_csv_path, olympic_athlete_event_missing_result_csv_path])
+        combined_results_df.to_csv(olympic_athlete_event_results_csv_path, index=False, encoding='utf-8-sig')
+    
     else:
         print('step 3 - Get All athlete ids and their results - disabled')
 

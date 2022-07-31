@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from typing import List, Dict
 from olympedia_client import OlympediaClient
 import re
+import bs4
 
 SINGLE_ATHLETE_COLUMN_COUNT = 4
 MULTI_ATHLETE_COLUMN_COUNT = 2
@@ -50,7 +51,7 @@ class OlympediaScraper():
         return [[games[i], edition_urls[i], years[i], cities[i], start_date[i], end_date[i], competition_date[i], isHeld[i]] for i in range(len(years))]
 
     # Helper function for get_olympics game
-    def _extract_content_from_editions_table(self, editions_table, season_olympics:str = ""):
+    def _extract_content_from_editions_table(self, editions_table: bs4.element.Tag, season_olympics:str = ""):
         edition_url = [item['href'] for item in editions_table.select('tr > td:nth-child(2) > a')]
         years = [item.get_text() for item in editions_table.select('tr > td:nth-child(2)')]
         games = [item + f' {season_olympics}' for item in years]
@@ -86,15 +87,15 @@ class OlympediaScraper():
 
         country_page = self.olympedia_client.get_country_page(country_noc)
         country_soup = BeautifulSoup(country_page, 'html.parser')
-        olympic_table = country_soup.select_one('body > div.container > table:nth-child(11)')
-        if olympic_table is None:
+        olympic_table = country_soup.find('h2', string='Participations by edition').find_next().find_next()
+        if olympic_table is None or olympic_table.name != 'table':
             return
         # Get a list of results url for each Edition based on country
         result_extensions = [olympic['href'] for olympic in olympic_table.select('tbody > tr > td:nth-child(6) > a')]
         editions = [edition.text for edition in olympic_table.select('tbody > tr > td:nth-child(1) > a')]
         event_athletes = []
         for edition, result_extension in zip(editions,result_extensions):
-            year, season, _ = edition.split(' ')
+            year, season, _ = edition.split()
             country_result_index = result_extension.split('/')[4]
             if year_filter_flag == True and season_filter_flag == True:
                 if int(year) >= int(year_filter) and season_filter.lower() == season.lower():
