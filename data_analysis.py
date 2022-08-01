@@ -1,9 +1,6 @@
 # Purpose: To Perform Basic Analysis of whether data scrapped is correct or not
-
+from config_file import *
 import pandas as pd
-
-olympic_athlete_event_results_csv_path = 'data/Olympic_Athlete_Event_Results.csv'
-olympic_games_medal_tally = 'data/Olympic_Games_Medal_Tally.csv'
 
 # 1. Analyse the event data and aggregate it to a medal level to check if the medal count matches
 # Read in CSV File

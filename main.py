@@ -2,6 +2,7 @@
 # Main Objective: to scrape the data from olympedia.org to proivde the data community with up to date olympian data including players, events, and winter / summer sports
 # Note: this project is for non-commercial purposes
 
+from config_file import *
 from olympedia_scraper import OlympediaScraper
 from os.path import exists
 import csv
@@ -168,27 +169,6 @@ if __name__ == "__main__":
 
     olympic_scraper = OlympediaScraper()
 
-    olympic_country_csv_path = 'data/Olympics_Country.csv'
-    olympic_games_csv_path = 'data/Olympics_Games.csv'
-    olympic_athlete_bio_csv_path = 'data/Olympic_Athlete_Bio.csv'
-    olympic_athlete_event_results_csv_path = 'data/Olympic_Athlete_Event_Results.csv'
-    olympic_athlete_event_results_csv_path_2 = 'data/Olympic_Athlete_Event_Results_Athlete_Based.csv'
-    distinct_athlete_id_csv_path = 'data/_distinct_athlete_id.csv'
-    distinct_result_id_csv_path = 'data/_distinct_result_id.csv'
-    olympic_games_medal_tally = 'data/Olympic_Games_Medal_Tally.csv'
-    raw_result_html_files_path = 'data/raw_result_html_files'
-
-    # Note: You can control the trigger to choose which steps you want to run or not
-    trigger = {
-        'step_1': False,
-        'step_2': False,
-        'step_3': False,
-        'step_4': False,
-        'step_5': False,
-        'step_6': True,
-        'step_7': False
-    }
-
     # 1. Get Country List
     if trigger['step_1']:
         save_country_list_to_csv(olympic_country_csv_path)
@@ -209,12 +189,11 @@ if __name__ == "__main__":
         save_all_athlete_and_results_from_country_noc_to_csv(country_noc, olympic_athlete_event_results_csv_path)
         # <BUG FIX> - issue with results page not listing all player -> https://www.olympedia.org/countries/CAN/editions/62 -> Monobob
         # Temporary fix by manually adding in the data values
-        olympic_athlete_event_missing_result_csv_path = 'data/Olympic_athlete_Event_Missing_Results.csv'
         combined_results_df = pd.concat(pd.read_csv(f) for f in [olympic_athlete_event_results_csv_path, olympic_athlete_event_missing_result_csv_path])
         combined_results_df.to_csv(olympic_athlete_event_results_csv_path, index=False, encoding='utf-8-sig')
     
     else:
-        print('step 3 - Get All athlete ids and their results - disabled')
+        print('step 3 - save all athlete and results from country noc to csv - disabled')
 
     #  4. Get Distinct Athlete ID and Event Information into new CSV Files
     if trigger['step_4']:
