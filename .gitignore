@@ -18,3 +18,7 @@ data/raw_result_html_files/*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+
+## Jupyter Notebook
+.ipynb_checkpoints/*
