@@ -1,63 +1,63 @@
-games,edition_url,years,cities,start_date,end_date,isHeld,competition_start_date,competition_end_date
-1896 Summer Olympics,/editions/1,1896,Athina,1896-04-06,1896-04-15,na,1896-04-06,1896-04-13
-1900 Summer Olympics,/editions/2,1900,Paris,na,na,na,1900-05-14,1900-10-28
-1904 Summer Olympics,/editions/3,1904,St. Louis,1904-05-14,na,na,1904-07-01,1904-11-23
-1908 Summer Olympics,/editions/5,1908,London,1908-07-13,na,na,1908-04-27,1908-10-31
-1912 Summer Olympics,/editions/6,1912,Stockholm,1912-07-06,1912-07-27,na,1912-05-05,1912-07-27
-1916 Summer Olympics,/editions/50,1916,Berlin,na,na,Not held due to war,na,na
-1920 Summer Olympics,/editions/7,1920,Antwerpen,1920-08-14,1920-08-30,na,1920-04-23,1920-09-12
-1924 Summer Olympics,/editions/8,1924,Paris,1924-07-05,1924-07-27,na,1924-05-04,1924-07-27
-1928 Summer Olympics,/editions/9,1928,Amsterdam,1928-07-28,1928-08-12,na,1928-05-17,1928-08-12
-1932 Summer Olympics,/editions/10,1932,Los Angeles,1932-07-30,1932-08-14,na,1932-07-30,1932-08-14
-1936 Summer Olympics,/editions/11,1936,Berlin,1936-08-01,1936-08-16,na,1936-08-02,1936-08-16
-1940 Summer Olympics,/editions/51,1940,Helsinki,na,na,Not held due to war,na,na
-1944 Summer Olympics,/editions/52,1944,London,na,na,Not held due to war,na,na
-1948 Summer Olympics,/editions/12,1948,London,1948-07-29,1948-08-14,na,1948-07-26,1948-08-14
-1952 Summer Olympics,/editions/13,1952,Helsinki,1952-07-19,1952-08-03,na,1952-07-14,1952-08-03
-1956 Summer Olympics,/editions/14,1956,Melbourne,1956-11-22,1956-12-08,na,1956-11-22,1956-12-08
-1960 Summer Olympics,/editions/15,1960,Roma,1960-08-25,1960-09-11,na,1960-08-25,1960-09-11
-1964 Summer Olympics,/editions/16,1964,Tokyo,1964-10-10,1964-10-24,na,1964-10-11,1964-10-24
-1968 Summer Olympics,/editions/17,1968,Ciudad de México,1968-10-12,1968-10-27,na,1968-10-12,1968-10-27
-1972 Summer Olympics,/editions/18,1972,München,1972-08-26,1972-09-11,na,1972-08-26,1972-09-11
-1976 Summer Olympics,/editions/19,1976,Montréal,1976-07-17,1976-08-01,na,1976-07-18,1976-08-01
-1980 Summer Olympics,/editions/20,1980,Moskva,1980-07-19,1980-08-03,na,1980-07-20,1980-08-03
-1984 Summer Olympics,/editions/21,1984,Los Angeles,1984-07-28,1984-08-12,na,1984-07-06,1984-08-12
-1988 Summer Olympics,/editions/22,1988,Seoul,1988-09-17,1988-10-02,na,1988-09-17,1988-10-02
-1992 Summer Olympics,/editions/23,1992,Barcelona,1992-07-25,1992-08-09,na,1992-07-24,1992-08-09
-1996 Summer Olympics,/editions/24,1996,Atlanta,1996-07-19,1996-08-04,na,1996-07-20,1996-08-04
-2000 Summer Olympics,/editions/25,2000,Sydney,2000-09-15,2000-10-01,na,2000-09-13,2000-10-01
-2004 Summer Olympics,/editions/26,2004,Athina,2004-08-13,2004-08-29,na,2004-08-11,2004-08-29
-2008 Summer Olympics,/editions/53,2008,Beijing,2008-08-08,2008-08-24,na,2008-08-06,2008-08-24
-2012 Summer Olympics,/editions/54,2012,London,2012-07-27,2012-08-12,na,2012-07-25,2012-08-12
-2016 Summer Olympics,/editions/59,2016,Rio de Janeiro,2016-08-05,2016-08-21,na,2016-08-03,2016-08-21
-2020 Summer Olympics,/editions/61,2020,Tokyo,2021-07-23,2021-07-23,na,na,na
-2024 Summer Olympics,/editions/63,2024,Paris,na,na,na,na,na
-2028 Summer Olympics,/editions/64,2028,Los Angeles,na,na,na,na,na
-2032 Summer Olympics,/editions/372,2032,Brisbane,na,na,na,na,na
-1924 Winter Olympics,/editions/29,1924,Chamonix,1924-01-24,1924-02-05,na,1924-01-26,1924-02-04
-1928 Winter Olympics,/editions/30,1928,Sankt Moritz,1928-02-11,1928-02-17,na,1928-02-11,1928-02-19
-1932 Winter Olympics,/editions/31,1932,Lake Placid,1932-02-04,1932-02-13,na,1932-02-04,1932-02-15
-1936 Winter Olympics,/editions/32,1936,Garmisch-Partenkirchen,1936-02-06,1936-02-16,na,1936-02-06,1936-02-16
-1940 Winter Olympics,/editions/55,1940,Garmisch-Partenkirchen,na,na,Not held due to war,na,na
-1944 Winter Olympics,/editions/56,1944,Cortina d'Ampezzo,na,na,Not held due to war,na,na
-1948 Winter Olympics,/editions/33,1948,Sankt Moritz,1948-01-30,1948-02-08,na,1948-01-30,1948-02-08
-1952 Winter Olympics,/editions/34,1952,Oslo,1952-02-15,1952-02-25,na,1952-02-14,1952-02-25
-1956 Winter Olympics,/editions/35,1956,Cortina d'Ampezzo,1956-01-26,1956-02-05,na,1956-01-26,1956-02-05
-1960 Winter Olympics,/editions/36,1960,Squaw Valley,1960-02-18,1960-02-28,na,1960-02-19,1960-02-28
-1964 Winter Olympics,/editions/37,1964,Innsbruck,1964-01-29,1964-02-09,na,1964-01-27,1964-02-09
-1968 Winter Olympics,/editions/38,1968,Grenoble,1968-02-06,1968-02-18,na,1968-02-04,1968-02-18
-1972 Winter Olympics,/editions/39,1972,Sapporo,1972-02-03,1972-02-13,na,1972-02-03,1972-02-13
-1976 Winter Olympics,/editions/40,1976,Innsbruck,1976-02-04,1976-02-15,na,1976-02-03,1976-02-15
-1980 Winter Olympics,/editions/41,1980,Lake Placid,1980-02-13,1980-02-24,na,1980-02-12,1980-02-24
-1984 Winter Olympics,/editions/42,1984,Sarajevo,1984-02-08,1984-02-19,na,1984-02-07,1984-02-19
-1988 Winter Olympics,/editions/43,1988,Calgary,1988-02-13,1988-02-28,na,1988-02-13,1988-02-28
-1992 Winter Olympics,/editions/44,1992,Albertville,1992-02-08,1992-02-23,na,1992-02-08,1992-02-23
-1994 Winter Olympics,/editions/45,1994,Lillehammer,1994-02-12,1994-02-27,na,1994-02-12,1994-02-27
-1998 Winter Olympics,/editions/46,1998,Nagano,1998-02-07,1998-02-22,na,1998-02-07,1998-02-22
-2002 Winter Olympics,/editions/47,2002,Salt Lake City,2002-02-08,2002-02-24,na,2002-02-09,2002-02-24
-2006 Winter Olympics,/editions/49,2006,Torino,2006-02-10,2006-02-26,na,2006-02-11,2006-02-26
-2010 Winter Olympics,/editions/57,2010,Vancouver,2010-02-12,2010-02-28,na,2010-02-12,2010-02-28
-2014 Winter Olympics,/editions/58,2014,Sochi,2014-02-07,2014-02-23,na,2014-02-06,2014-02-23
-2018 Winter Olympics,/editions/60,2018,PyeongChang,2018-02-09,2018-02-25,na,2018-02-08,2018-02-25
-2022 Winter Olympics,/editions/62,2022,Beijing,2022-02-04,2022-02-20,na,2022-02-02,2022-02-20
-2026 Winter Olympics,/editions/72,2026,Milano-Cortina d'Ampezzo,na,na,na,na,na
+games,edition_url,years,cities,countries_flag_url,countries_noc,start_date,end_date,isHeld,competition_start_date,competition_end_date
+1896 Summer Olympics,/editions/1,1896,Athina,/images/flags/GRE.png,GRE,1896-04-06,1896-04-15,na,1896-04-06,1896-04-13
+1900 Summer Olympics,/editions/2,1900,Paris,/images/flags/FRA.png,FRA,na,na,na,1900-05-14,1900-10-28
+1904 Summer Olympics,/editions/3,1904,St. Louis,/images/flags/USA.png,USA,1904-05-14,na,na,1904-07-01,1904-11-23
+1908 Summer Olympics,/editions/5,1908,London,/images/flags/GBR.png,GBR,1908-07-13,na,na,1908-04-27,1908-10-31
+1912 Summer Olympics,/editions/6,1912,Stockholm,/images/flags/SWE.png,SWE,1912-07-06,1912-07-27,na,1912-05-05,1912-07-27
+1916 Summer Olympics,/editions/50,1916,Berlin,/images/flags/GER.png,GER,na,na,Not held due to war,na,na
+1920 Summer Olympics,/editions/7,1920,Antwerpen,/images/flags/BEL.png,BEL,1920-08-14,1920-08-30,na,1920-04-23,1920-09-12
+1924 Summer Olympics,/editions/8,1924,Paris,/images/flags/FRA.png,FRA,1924-07-05,1924-07-27,na,1924-05-04,1924-07-27
+1928 Summer Olympics,/editions/9,1928,Amsterdam,/images/flags/NED.png,NED,1928-07-28,1928-08-12,na,1928-05-17,1928-08-12
+1932 Summer Olympics,/editions/10,1932,Los Angeles,/images/flags/USA.png,USA,1932-07-30,1932-08-14,na,1932-07-30,1932-08-14
+1936 Summer Olympics,/editions/11,1936,Berlin,/images/flags/GER.png,GER,1936-08-01,1936-08-16,na,1936-08-02,1936-08-16
+1940 Summer Olympics,/editions/51,1940,Helsinki,/images/flags/FIN.png,FIN,na,na,Not held due to war,na,na
+1944 Summer Olympics,/editions/52,1944,London,/images/flags/GBR.png,GBR,na,na,Not held due to war,na,na
+1948 Summer Olympics,/editions/12,1948,London,/images/flags/GBR.png,GBR,1948-07-29,1948-08-14,na,1948-07-26,1948-08-14
+1952 Summer Olympics,/editions/13,1952,Helsinki,/images/flags/FIN.png,FIN,1952-07-19,1952-08-03,na,1952-07-14,1952-08-03
+1956 Summer Olympics,/editions/14,1956,Melbourne,/images/flags/AUS.png,AUS,1956-11-22,1956-12-08,na,1956-11-22,1956-12-08
+1960 Summer Olympics,/editions/15,1960,Roma,/images/flags/ITA.png,ITA,1960-08-25,1960-09-11,na,1960-08-25,1960-09-11
+1964 Summer Olympics,/editions/16,1964,Tokyo,/images/flags/JPN.png,JPN,1964-10-10,1964-10-24,na,1964-10-11,1964-10-24
+1968 Summer Olympics,/editions/17,1968,Ciudad de México,/images/flags/MEX.png,MEX,1968-10-12,1968-10-27,na,1968-10-12,1968-10-27
+1972 Summer Olympics,/editions/18,1972,München,/images/flags/FRG.png,FRG,1972-08-26,1972-09-11,na,1972-08-26,1972-09-11
+1976 Summer Olympics,/editions/19,1976,Montréal,/images/flags/CAN.png,CAN,1976-07-17,1976-08-01,na,1976-07-18,1976-08-01
+1980 Summer Olympics,/editions/20,1980,Moskva,/images/flags/URS.png,URS,1980-07-19,1980-08-03,na,1980-07-20,1980-08-03
+1984 Summer Olympics,/editions/21,1984,Los Angeles,/images/flags/USA.png,USA,1984-07-28,1984-08-12,na,1984-07-06,1984-08-12
+1988 Summer Olympics,/editions/22,1988,Seoul,/images/flags/KOR.png,KOR,1988-09-17,1988-10-02,na,1988-09-17,1988-10-02
+1992 Summer Olympics,/editions/23,1992,Barcelona,/images/flags/ESP.png,ESP,1992-07-25,1992-08-09,na,1992-07-24,1992-08-09
+1996 Summer Olympics,/editions/24,1996,Atlanta,/images/flags/USA.png,USA,1996-07-19,1996-08-04,na,1996-07-20,1996-08-04
+2000 Summer Olympics,/editions/25,2000,Sydney,/images/flags/AUS.png,AUS,2000-09-15,2000-10-01,na,2000-09-13,2000-10-01
+2004 Summer Olympics,/editions/26,2004,Athina,/images/flags/GRE.png,GRE,2004-08-13,2004-08-29,na,2004-08-11,2004-08-29
+2008 Summer Olympics,/editions/53,2008,Beijing,/images/flags/CHN.png,CHN,2008-08-08,2008-08-24,na,2008-08-06,2008-08-24
+2012 Summer Olympics,/editions/54,2012,London,/images/flags/GBR.png,GBR,2012-07-27,2012-08-12,na,2012-07-25,2012-08-12
+2016 Summer Olympics,/editions/59,2016,Rio de Janeiro,/images/flags/BRA.png,BRA,2016-08-05,2016-08-21,na,2016-08-03,2016-08-21
+2020 Summer Olympics,/editions/61,2020,Tokyo,/images/flags/JPN.png,JPN,2021-07-23,2021-07-23,na,na,na
+2024 Summer Olympics,/editions/63,2024,Paris,/images/flags/FRA.png,FRA,na,na,na,na,na
+2028 Summer Olympics,/editions/64,2028,Los Angeles,/images/flags/USA.png,USA,na,na,na,na,na
+2032 Summer Olympics,/editions/372,2032,Brisbane,/images/flags/AUS.png,AUS,na,na,na,na,na
+1924 Winter Olympics,/editions/29,1924,Chamonix,/images/flags/FRA.png,FRA,1924-01-24,1924-02-05,na,1924-01-26,1924-02-04
+1928 Winter Olympics,/editions/30,1928,Sankt Moritz,/images/flags/SUI.png,SUI,1928-02-11,1928-02-17,na,1928-02-11,1928-02-19
+1932 Winter Olympics,/editions/31,1932,Lake Placid,/images/flags/USA.png,USA,1932-02-04,1932-02-13,na,1932-02-04,1932-02-15
+1936 Winter Olympics,/editions/32,1936,Garmisch-Partenkirchen,/images/flags/GER.png,GER,1936-02-06,1936-02-16,na,1936-02-06,1936-02-16
+1940 Winter Olympics,/editions/55,1940,Garmisch-Partenkirchen,/images/flags/GER.png,GER,na,na,Not held due to war,na,na
+1944 Winter Olympics,/editions/56,1944,Cortina d'Ampezzo,/images/flags/ITA.png,ITA,na,na,Not held due to war,na,na
+1948 Winter Olympics,/editions/33,1948,Sankt Moritz,/images/flags/SUI.png,SUI,1948-01-30,1948-02-08,na,1948-01-30,1948-02-08
+1952 Winter Olympics,/editions/34,1952,Oslo,/images/flags/NOR.png,NOR,1952-02-15,1952-02-25,na,1952-02-14,1952-02-25
+1956 Winter Olympics,/editions/35,1956,Cortina d'Ampezzo,/images/flags/ITA.png,ITA,1956-01-26,1956-02-05,na,1956-01-26,1956-02-05
+1960 Winter Olympics,/editions/36,1960,Squaw Valley,/images/flags/USA.png,USA,1960-02-18,1960-02-28,na,1960-02-19,1960-02-28
+1964 Winter Olympics,/editions/37,1964,Innsbruck,/images/flags/AUT.png,AUT,1964-01-29,1964-02-09,na,1964-01-27,1964-02-09
+1968 Winter Olympics,/editions/38,1968,Grenoble,/images/flags/FRA.png,FRA,1968-02-06,1968-02-18,na,1968-02-04,1968-02-18
+1972 Winter Olympics,/editions/39,1972,Sapporo,/images/flags/JPN.png,JPN,1972-02-03,1972-02-13,na,1972-02-03,1972-02-13
+1976 Winter Olympics,/editions/40,1976,Innsbruck,/images/flags/AUT.png,AUT,1976-02-04,1976-02-15,na,1976-02-03,1976-02-15
+1980 Winter Olympics,/editions/41,1980,Lake Placid,/images/flags/USA.png,USA,1980-02-13,1980-02-24,na,1980-02-12,1980-02-24
+1984 Winter Olympics,/editions/42,1984,Sarajevo,/images/flags/YUG.png,YUG,1984-02-08,1984-02-19,na,1984-02-07,1984-02-19
+1988 Winter Olympics,/editions/43,1988,Calgary,/images/flags/CAN.png,CAN,1988-02-13,1988-02-28,na,1988-02-13,1988-02-28
+1992 Winter Olympics,/editions/44,1992,Albertville,/images/flags/FRA.png,FRA,1992-02-08,1992-02-23,na,1992-02-08,1992-02-23
+1994 Winter Olympics,/editions/45,1994,Lillehammer,/images/flags/NOR.png,NOR,1994-02-12,1994-02-27,na,1994-02-12,1994-02-27
+1998 Winter Olympics,/editions/46,1998,Nagano,/images/flags/JPN.png,JPN,1998-02-07,1998-02-22,na,1998-02-07,1998-02-22
+2002 Winter Olympics,/editions/47,2002,Salt Lake City,/images/flags/USA.png,USA,2002-02-08,2002-02-24,na,2002-02-09,2002-02-24
+2006 Winter Olympics,/editions/49,2006,Torino,/images/flags/ITA.png,ITA,2006-02-10,2006-02-26,na,2006-02-11,2006-02-26
+2010 Winter Olympics,/editions/57,2010,Vancouver,/images/flags/CAN.png,CAN,2010-02-12,2010-02-28,na,2010-02-12,2010-02-28
+2014 Winter Olympics,/editions/58,2014,Sochi,/images/flags/RUS.png,RUS,2014-02-07,2014-02-23,na,2014-02-06,2014-02-23
+2018 Winter Olympics,/editions/60,2018,PyeongChang,/images/flags/KOR.png,KOR,2018-02-09,2018-02-25,na,2018-02-08,2018-02-25
+2022 Winter Olympics,/editions/62,2022,Beijing,/images/flags/CHN.png,CHN,2022-02-04,2022-02-20,na,2022-02-02,2022-02-20
+2026 Winter Olympics,/editions/72,2026,Milano-Cortina d'Ampezzo,/images/flags/ITA.png,ITA,na,na,na,na,na

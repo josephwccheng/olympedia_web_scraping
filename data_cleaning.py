@@ -93,7 +93,7 @@ def clean_olympic_athlete_event_results():
     olympic_athlete_event_results.to_csv(cleaned_olympic_athlete_event_results_csv_path, index=False)
 
 if __name__ == "__main__":
-    # clean_olympic_athlete_bio()
-    # clean_olympic_games()
+    clean_olympic_athlete_bio()
+    clean_olympic_games()
     clean_olympic_athlete_event_results()
     print('data cleaning done')

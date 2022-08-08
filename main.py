@@ -72,7 +72,7 @@ def save_country_list_to_csv(olympic_country_csv_path: str=""):
 # 2. Get Olympic Games list
 def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
     games_rows = olympic_scraper.get_olympics_games()
-    games_header = ['games', 'edition_url', 'years', 'cities', 'start_date', 'end_date', 'competition_date', 'isHeld']
+    games_header = ['games', 'edition_url', 'years', 'cities', 'countries_flag_url', 'countries_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
     with open(olympic_games_csv_path, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(games_header)
@@ -215,7 +215,7 @@ if __name__ == "__main__":
     if trigger['step_6']:
         save_medel_results_to_csv(olympic_games_csv_path, olympic_games_medal_tally)
     else:
-        print('step 6 - Saving country medal data from the Olympics_Games Csv file - disabled') 
+        print('step 6 - Saving country medal data from the Olympics_Games csv file - disabled') 
 
     # 7. Download Results html into local repository
     # Warning: This will take a long time as it is looping through 8,000 events and downloading the html page
