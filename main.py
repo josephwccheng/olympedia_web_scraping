@@ -18,7 +18,7 @@ import concurrent.futures
 
 
 # Creating function to save event ahtlete results for multi-threading / processing
-def get_event_athlete_results_from_country_into_csv(country_noc:str, file_path: str=""):
+def _get_event_athlete_results_from_country_into_csv(country_noc:str, file_path: str=""):
     if not file_path:
         raise ValueError("file path not found")
     event_athlete_results = olympic_scraper.get_event_athletes_results_from_country(country_noc)
@@ -89,7 +89,7 @@ def save_all_athlete_and_results_from_country_noc_to_csv(country_noc: list, outp
         writer.writerow(event_athletes_header)
     with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
         # map will print the result in order
-        results = list(tqdm(executor.map(lambda p: get_event_athlete_results_from_country_into_csv(*p), country_noc_threading), total=len(country_noc)))
+        results = list(tqdm(executor.map(lambda p: _get_event_athlete_results_from_country_into_csv(*p), country_noc_threading), total=len(country_noc)))
     
     print(f'3. {output_athlete_event_results_csv_path} file created!')
     return True
@@ -153,7 +153,31 @@ def save_medel_results_to_csv(olympic_games_csv_path: str , output_medal_results
         writer.writerows(medal_result) 
     return True
 
-# 7. Download Results html into local repository
+# 7. Saving Olympic Events to CSV file
+def save_olympic_results_to_csv(result_id_list: list, output_results_csv_path: str):
+    results_header = ['result_id','event_title', 'edition', 'sport', 'sport_url', 'result_date','result_location','result_participants','result_format', 'result_detail','result_description']
+    results_threading = [[result_id, output_results_csv_path] for result_id in result_id_list]
+
+    with open(output_results_csv_path, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(results_header)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
+        # map will print the result in order
+        results = list(tqdm(executor.map(lambda p: _get_result_info_from_result_id_into_csv(*p), results_threading), total=len(results_threading)))
+    print(f'7. {output_results_csv_path} file created!')
+
+# helper function
+def _get_result_info_from_result_id_into_csv(result_id: str, file_path: str):
+    if not file_path:
+        raise ValueError("file path not found")
+    result_bio_info = olympic_scraper.get_result_info_from_result_id(result_id)
+    if result_bio_info is not None:
+        with open(file_path, 'a+', newline='') as f:
+            writer= csv.writer(f)
+            writer.writerow(list(result_bio_info.values()))
+    return result_id
+
+# 8. Download Results html into local repository
 def download_result_html_to_path(event_ids: list, output_result_html_files_path: str):
     event_ids_multi_processing = [[event_id, output_result_html_files_path] for event_id in event_ids]
     if multiprocessing.cpu_count() > 0:
@@ -217,14 +241,25 @@ if __name__ == "__main__":
     else:
         print('step 6 - Saving country medal data from the Olympics_Games csv file - disabled') 
 
-    # 7. Download Results html into local repository
-    # Warning: This will take a long time as it is looping through 8,000 events and downloading the html page
+    # 7. Create Olympic_Events.csv file with
+    # <BUG Fix> - Results 18001004, 18001046, 18001088 have 500 error code
+    # Mannually removed these results from the distinct result list
     if trigger['step_7']:
+        with open(distinct_result_id_csv_path) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            event_ids = [item for row in csv_reader for item in row]
+        save_olympic_results_to_csv(event_ids[1:], olympic_results_csv_path)
+    else:
+        print('step 7 - Saving Olympic Events csv file - disabled') 
+
+    # 8. Download Results html into local repository
+    # Warning: This will take a long time as it is looping through 8,000 events and downloading the html page
+    if trigger['step_8']:
         with open(distinct_result_id_csv_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             event_ids = [item for row in csv_reader for item in row]
         download_result_html_to_path(event_ids[1:], raw_result_html_files_path)
     else:
-        print('step 7 - Download Results html into local repository - disabled') 
+        print('step 8 - Download Results html into local repository - disabled') 
 
     print('Olympedia Web Scrapping Completed')

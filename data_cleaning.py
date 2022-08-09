@@ -92,8 +92,53 @@ def clean_olympic_athlete_event_results():
     olympic_athlete_event_results.fillna('na', inplace=True)
     olympic_athlete_event_results.to_csv(cleaned_olympic_athlete_event_results_csv_path, index=False)
 
+# 4. Clean Olympic_Events.csv
+# - result_date: different underscore ' — ' This is for time (e.g. 23 February 2010 — 11:00), ' – ' This is for date (e.g. 11 – 12 August 1908 or 28 July –  6 August 2012)
+# <TODO> Clean up the code and make it more modular
+def clean_olympic_events():
+    olympic_events_df = pd.read_csv(olympic_results_csv_path)
+    for index, row in olympic_events_df.iterrows():
+        result_date = row['result_date']
+        start_date, end_date, time = ['na', 'na', 'na']
+        time_splitter = ' — '
+        date_range_splitter = ' – '
+        if time_splitter in result_date: # result_date is time
+            date, time = result_date.split(time_splitter)
+            date_list = date.split()
+            if len(date_list) == 3:
+                start_date = datetime.strptime(date, '%d %B %Y').date()
+            elif len(date_list) == 5: # if date list within the same month (e.g. 11 – 12 August 1908)
+                date_object = datetime.strptime(f'{date_list[0]} {date_list[3]} {date_list[4]}', '%d %B %Y').date()
+                start_date = date_object
+                date_object = datetime.strptime(f'{date_list[2]} {date_list[3]} {date_list[4]}', '%d %B %Y').date()
+                end_date = date_object
+            elif len(date_list) == 6: # if competition_date are in different month (e.g. 28 July –  6 August 2012)
+                date_object = datetime.strptime(f'{date_list[0]} {date_list[1]} {date_list[5]}', '%d %B %Y').date()
+                start_date = date_object
+                date_object = datetime.strptime(f'{date_list[3]} {date_list[4]} {date_list[5]}', '%d %B %Y').date()
+        elif date_range_splitter in result_date: # result_date date range
+            date_list = result_date.split()
+            if len(date_list) == 5: # if date list within the same month (e.g. 11 – 12 August 1908)
+                date_object = datetime.strptime(f'{date_list[0]} {date_list[3]} {date_list[4]}', '%d %B %Y').date()
+                start_date = date_object
+                date_object = datetime.strptime(f'{date_list[2]} {date_list[3]} {date_list[4]}', '%d %B %Y').date()
+                end_date = date_object
+            elif len(date_list) == 6: # if competition_date are in different month (e.g. 28 July –  6 August 2012)
+                date_object = datetime.strptime(f'{date_list[0]} {date_list[1]} {date_list[5]}', '%d %B %Y').date()
+                start_date = date_object
+                date_object = datetime.strptime(f'{date_list[3]} {date_list[4]} {date_list[5]}', '%d %B %Y').date()
+                end_date = date_object
+        elif len(result_date.split()) == 3:
+            start_date = datetime.strptime(result_date, '%d %B %Y').date()
+        olympic_events_df.loc[index, 'start_date'] = start_date
+        olympic_events_df.loc[index, 'end_date'] = end_date
+        olympic_events_df.loc[index, 'time'] = time
+    olympic_events_df = olympic_events_df.drop(columns=['result_date'])
+    olympic_events_df.fillna('na', inplace=True)
+    olympic_events_df.to_csv(cleaned_olympic_results_csv_path, index=False)
 if __name__ == "__main__":
     clean_olympic_athlete_bio()
     clean_olympic_games()
     clean_olympic_athlete_event_results()
+    clean_olympic_events()
     print('data cleaning done')

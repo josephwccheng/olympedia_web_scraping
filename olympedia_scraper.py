@@ -302,3 +302,38 @@ class OlympediaScraper():
             return {'country':country_items, 'noc':noc_items, 'gold': gold_items, 'silver':silver_items, 'bronze': bronze_items, 'total': total_items}
         else:
             return {}
+    
+    def get_result_info_from_result_id(self, result_id : str) -> dict:
+        # <BUG Fix> - Results 18001004, 18001046, 18001088 have 500 error code
+        # <TODO> - Change the logic on how the results info is retrieved rom results page
+        if result_id not in ['18001004', '18001046', '18001088']:
+            result_page = self.olympedia_client.get_result_page(result_id)
+            result_soup = BeautifulSoup(result_page, 'html.parser')
+
+            breadcrumb = result_soup.select('body > div.container > ol.breadcrumb > li')
+            edition = breadcrumb[2].get_text()
+            sport = breadcrumb[3].get_text()
+            sport_url = breadcrumb[3].select('a')[0]['href']
+            event_title = result_soup.select('body > div.container > h1.event_title')[0].get_text()
+
+            event_bio_table = result_soup.select('body > div.container > table.biodata')[0]
+            event_bio_header = [item.get_text() for item in event_bio_table.select('table > tr > th')]
+            event_bio_value = [item.get_text() for item in event_bio_table.select('table > tr > td')]
+            result_date, result_location, result_participants,result_format, result_description, result_detail = ['na' for i in range(6)]
+
+            if 'Date' in event_bio_header:
+                result_date = event_bio_value[event_bio_header.index('Date')]
+            if 'Location' in event_bio_header:
+                result_location = event_bio_value[event_bio_header.index('Location')]
+            if 'Participants' in event_bio_header:
+                result_participants = event_bio_value[event_bio_header.index('Participants')]
+            if 'Format' in event_bio_header:
+                result_format = event_bio_value[event_bio_header.index('Format')]
+            if 'Details' in event_bio_header:
+                result_detail = event_bio_value[event_bio_header.index('Details')]
+            
+            if len(result_soup.select('body > div.container > div.description')) > 0:
+                result_description = result_soup.select('body > div.container > div.description')[0].get_text()
+            return {'result_id': result_id, 'event_title': event_title, 'edition': edition, 'sport': sport, 'sport_url':sport_url, 'result_date': result_date, 'result_location': result_location, 'result_participants': result_participants, 'result_format': result_format, 'result_detail': result_detail, 'result_description': result_description}
+        else:
+            return None
