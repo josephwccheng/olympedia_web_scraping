@@ -22,6 +22,9 @@ Perform Web Scraping on the [olympedia website](http://www.olympedia.org/) to ob
 4. **Olympic Games List**
     1. **Headers:** games, edition_url, years, cities, start_date, end_date, competition_date, isHeld
     2. **File:** "Olympics_Games.csv"
+5. **Olympic Results List**
+    1. **Headers:** result_id, event_title, edition, sport, sport_url, result_date, result_location, result_participants, result_format, result_detail, result_description
+    2. **File:** "Olympics_Results.csv"
 <em>Note 1: All files are located in the data folder </em> 
 
 <em>Note 2: This is inspired by [Kaggle: 120 years of Olympic history: athletes and results
@@ -66,7 +69,11 @@ Perform Web Scraping on the [olympedia website](http://www.olympedia.org/) to ob
 
         Obtain Medal tallies of Olympic Games and Countries who has won gold, silver, and bronze medals and save it to "Olympic_Games_Medal_Tally.csv" file
 
-    **step 7** - Download Results html into local repository
+    **step 7** - Saving result data from the distinct result id list
+
+        From the "_distinct_result_id.csv" file generated from Step 4, obtain detailed information about the result i.e date, location, format, participants, sports, and save it in "Olympic_Results.csv" file
+
+    **step 8** - Download Results html into local repository
 
         Download Raw HTML files of all the results from the "_distinct_result_id.csv" file. This is a todo for future work for those who would like to dive down more on each specific events and their performances
 
@@ -78,6 +85,9 @@ Perform Web Scraping on the [olympedia website](http://www.olympedia.org/) to ob
 ## Data Validation ##
     - Run "python data_validation.py" to run data validation on the "Olympic_Athlete_Event_Results.csv" file. The validation is run to ensure Event level data aggregated medal count matches with the Medal Tally provided by the source data.
 
+## Data Cleaning ##
+    - Run "python data_cleaning.py" to perform data cleaning on the files. Each file has different cleaning logic i.e. date formatting and removing null characters.
+
 ## Issues Identified and Status of Fix ##
     1. Country list did not include "ROC" - Russian Olympic Committee, so the data was manually appended to the country list. (Temporary Hardcoded Fix)
     2. Issue with results page not listing all player for the sport: Monobob
@@ -85,6 +95,8 @@ Perform Web Scraping on the [olympedia website](http://www.olympedia.org/) to ob
         - (Temporary Hardcoded Fix)
     3. There is a 99.1% Match of the medal counts for the "Olympic_Athlete_Event_Results.csv" File. The mismatch is known for some rows between 1896 - 1924 Olympics Game because there were some events which allows "Mixed / Multiple" Countries and the mixed games should not contribute to the medal counts of the country. In our Script we assume them as a medal count and hence why there is a mismatch of data.
         - (Not Fixed)
+    4. Result pages with id 18001004, 18001046, 18001088 have 500 error code and has no data in it
+        - (Not Fixed) as it is server issue
 
 ## Future Work ##
     1. Create / Perform Exploratory Data Analysis on the dataset

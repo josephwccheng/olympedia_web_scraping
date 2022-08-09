@@ -28,7 +28,7 @@ class TestOlympediaScraper(unittest.TestCase):
             editions_html
         )
         result = olympedia_scraper.get_olympics_games()
-        assert result[0] == ['1996 Summer Olympics', '/editions/24', '1996', 'Atlanta', '19 July', ' 4 August', '20 July –  4 August', '']
+        assert result[0] == ['1996 Summer Olympics', '/editions/24', '1996', 'Atlanta', '/images/flags/USA.png', 'USA', '19 July', ' 4 August', '20 July –  4 August', '']
 
     def test_get_event_athletes_results_from_country(self):
         olympedia_scraper = OlympediaScraper()
