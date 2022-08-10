@@ -48,7 +48,7 @@ def clean_olympic_games():
     olympic_games_df.fillna('na', inplace=True)
 
     for index, row in olympic_games_df.iterrows():
-        year = row['years']
+        year = row['year']
         # start_date processing
         start_date = row['start_date']
         if start_date != 'na':

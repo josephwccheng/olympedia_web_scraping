@@ -1,4 +1,4 @@
-games,edition_url,years,cities,countries_flag_url,countries_noc,start_date,end_date,isHeld,competition_start_date,competition_end_date
+edition,edition_url,year,city,country_flag_url,country_noc,start_date,end_date,isHeld,competition_start_date,competition_end_date
 1896 Summer Olympics,/editions/1,1896,Athina,/images/flags/GRE.png,GRE,1896-04-06,1896-04-15,na,1896-04-06,1896-04-13
 1900 Summer Olympics,/editions/2,1900,Paris,/images/flags/FRA.png,FRA,na,na,na,1900-05-14,1900-10-28
 1904 Summer Olympics,/editions/3,1904,St. Louis,/images/flags/USA.png,USA,1904-05-14,na,na,1904-07-01,1904-11-23
