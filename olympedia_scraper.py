@@ -40,6 +40,7 @@ class OlympediaScraper():
         winter_extracted = self._extract_content_from_editions_table(winter_table, 'Winter Olympics')
 
         games = summer_extracted['games'] + winter_extracted['games']
+        edition_ids = summer_extracted['edition_ids'] + winter_extracted['edition_ids']
         edition_urls = summer_extracted['edition_urls'] + winter_extracted['edition_urls']
         years = summer_extracted['years'] + winter_extracted['years']
         cities = summer_extracted['cities'] + winter_extracted['cities']
@@ -50,11 +51,12 @@ class OlympediaScraper():
         competition_date = summer_extracted['competition_date'] + winter_extracted['competition_date']
         isHeld = summer_extracted['isHeld'] + winter_extracted['isHeld']
 
-        return [[games[i], edition_urls[i], years[i], cities[i], countries_flag_url[i], countries_noc[i], start_date[i], end_date[i], competition_date[i], isHeld[i]] for i in range(len(years))]
+        return [[games[i], edition_ids[i], edition_urls[i], years[i], cities[i], countries_flag_url[i], countries_noc[i], start_date[i], end_date[i], competition_date[i], isHeld[i]] for i in range(len(years))]
 
     # Helper function for get_olympics game
     def _extract_content_from_editions_table(self, editions_table: bs4.element.Tag, season_olympics:str = ""):
         edition_url = [item['href'] for item in editions_table.select('tr > td:nth-child(2) > a')]
+        edition_id = [item.split('/')[-1] for item in edition_url]
         years = [item.get_text() for item in editions_table.select('tr > td:nth-child(2)')]
         games = [item + f' {season_olympics}' for item in years]
         cities = [item.get_text() for item in editions_table.select('tr > td:nth-child(3)')]
@@ -65,7 +67,7 @@ class OlympediaScraper():
         competition_date = [item.get_text() for item in editions_table.select('tr > td:nth-child(7)')]
         isHeld = [item.get_text().strip() for item in editions_table.select('tr > td:nth-child(8)')]
 
-        return {'edition_urls': edition_url, 'years': years, 'games': games, 'cities': cities, 'countries_flag_url': countries_flag_url, 'countries_noc': countries_noc, 'start_date': start_date, 'end_date': end_date, 'competition_date': competition_date, 'isHeld': isHeld}
+        return {'edition_urls': edition_url, 'edition_ids': edition_id, 'years': years, 'games': games, 'cities': cities, 'countries_flag_url': countries_flag_url, 'countries_noc': countries_noc, 'start_date': start_date, 'end_date': end_date, 'competition_date': competition_date, 'isHeld': isHeld}
 
     # 3. Table of all distinct players
     # Input: country noc
