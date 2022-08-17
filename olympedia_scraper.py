@@ -204,7 +204,7 @@ class OlympediaScraper():
         noc = athlete_soup.find('th', string='NOC').find_next()
         athlete_bio_info = {
             'athlete_id': athlete_id,
-            'name': re.sub('[^0-9a-zA-Z]+', ' ', raw_athlete_bio_info.get('Used name')),
+            'name': re.sub('[•]+', ' ', raw_athlete_bio_info.get('Used name')),
             'sex': raw_athlete_bio_info.get('Sex'),
             'born': '',
             'height': '',
