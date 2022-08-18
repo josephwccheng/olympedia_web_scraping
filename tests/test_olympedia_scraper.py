@@ -28,7 +28,7 @@ class TestOlympediaScraper(unittest.TestCase):
             editions_html
         )
         result = olympedia_scraper.get_olympics_games()
-        assert result[0] == ['1996 Summer Olympics', '/editions/24', '1996', 'Atlanta', '/images/flags/USA.png', 'USA', '19 July', ' 4 August', '20 July –  4 August', '']
+        assert result[0] == ['1996 Summer Olympics', '24', '/editions/24', '1996', 'Atlanta', '/images/flags/USA.png', 'USA', '19 July', ' 4 August', '20 July –  4 August', '']
 
     def test_get_event_athletes_results_from_country(self):
         olympedia_scraper = OlympediaScraper()
@@ -55,7 +55,7 @@ class TestOlympediaScraper(unittest.TestCase):
         )
 
         result = olympedia_scraper.get_event_athletes_results_from_country('AUS')
-        assert result[0] == {'edition': '2020 Summer Olympics', 'country_noc': 'AUS', 'sport': 'Archery', 'event': 'Individual, Men', 'event_id': '18000492', 'athlete': 'Taylor Worth', 'athlete_id': '121560', 'pos': '=9', 'medal': '', 'isTeamSport': False}
+        assert result[0] == {'edition': '2020 Summer Olympics', 'edition_id': '61', 'country_noc': 'AUS', 'sport': 'Archery', 'event': 'Individual, Men', 'event_id': '18000492', 'athlete': 'Taylor Worth', 'athlete_id': '121560', 'pos': '=9', 'medal': '', 'isTeamSport': False}
     
         # Testing filters for year and season
         result_all = olympedia_scraper.get_event_athletes_results_from_country(country_noc='AUS', year_filter = 'all', season_filter ='all')
@@ -92,5 +92,12 @@ class TestOlympediaScraper(unittest.TestCase):
         assert medal_table['silver'][0] == '41'
         assert medal_table['bronze'][0] == '33'
         assert medal_table['total'][0] == '113'
+    
+    def test_get_result_info_from_result_id(self):
+        olympedia_scraper = OlympediaScraper()
+        SAMPLE_RESULT_ID = '8466'
+        result_info = olympedia_scraper.get_result_info_from_result_id(SAMPLE_RESULT_ID)
+        assert result_info['edition_id'] == '25'
+        assert result_info['sport'] == 'Swimming'
 if __name__ == '__main__':
     unittest.main()

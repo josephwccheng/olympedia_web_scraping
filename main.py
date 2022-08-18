@@ -72,7 +72,7 @@ def save_country_list_to_csv(olympic_country_csv_path: str=""):
 # 2. Get Olympic Games list
 def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
     games_rows = olympic_scraper.get_olympics_games()
-    games_header = ['edition', 'edition_url', 'year', 'city', 'country_flag_url', 'country_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
+    games_header = ['edition', 'edition_id','edition_url', 'year', 'city', 'country_flag_url', 'country_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
     with open(olympic_games_csv_path, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(games_header)
@@ -82,7 +82,7 @@ def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
 
 # 3. Get all athlete ids and their results
 def save_all_athlete_and_results_from_country_noc_to_csv(country_noc: list, output_athlete_event_results_csv_path: str):
-    event_athletes_header = ["edition","country_noc","sport","event","result_id","athlete","athlete_id","pos","medal","isTeamSport"]
+    event_athletes_header = ["edition","edition_id","country_noc","sport","event","result_id","athlete","athlete_id","pos","medal","isTeamSport"]
     country_noc_threading = [[noc, output_athlete_event_results_csv_path] for noc in country_noc]
     with open(output_athlete_event_results_csv_path, 'w', newline='') as f:
         writer = csv.writer(f)
@@ -121,7 +121,7 @@ def get_distinct_athlete_and_events_from_athlete_event_csv(athlete_event_results
 # 5. Get athlete bio information and results from all the events they parcipated in
 def get_athlete_bio_and_results_from_athlete_id_list(athlete_ids: list, output_athlete_bio_csv_path:str, output_athlete_event_results_csv_path:str):
     bio_header = ['athlete_id', 'name', 'sex', 'born', 'height', 'weight', 'country', 'country_noc', 'description', 'special_notes']
-    events_header = ['edition','country_noc','sport','event','result_id','athlete','athlete_id','pos','medals']
+    events_header = ['edition','edition_id', 'country_noc','sport','event','result_id','athlete','athlete_id','pos','medals']
     athlete_id_threading = [[athlete_id, output_athlete_bio_csv_path, output_athlete_event_results_csv_path] for athlete_id in athlete_ids]
     with open(output_athlete_bio_csv_path, 'w', newline='') as f_bio, open(output_athlete_event_results_csv_path, 'w', newline='') as f_events:
         writer_bio = csv.writer(f_bio)
@@ -146,16 +146,16 @@ def save_medel_results_to_csv(olympic_games_csv_path: str , output_medal_results
         medal_table = olympic_scraper.get_medal_table_from_editions_id(edition_id)
         if medal_table:
             for i in range(len(medal_table['country'])):
-                medal_result.append([row['games'], edition_id, row['years'], medal_table['country'][i], medal_table['noc'][i], medal_table['gold'][i], medal_table['silver'][i], medal_table['bronze'][i], medal_table['total'][i]])
+                medal_result.append([row['edition'], edition_id, row['year'], medal_table['country'][i], medal_table['noc'][i], medal_table['gold'][i], medal_table['silver'][i], medal_table['bronze'][i], medal_table['total'][i]])
     with open(output_medal_results_csv_path, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(medal_result) 
     return True
 
-# 7. Saving Olympic Events to CSV file
+# 7. Saving Olympic Results to CSV file
 def save_olympic_results_to_csv(result_id_list: list, output_results_csv_path: str):
-    results_header = ['result_id','event_title', 'edition', 'sport', 'sport_url', 'result_date','result_location','result_participants','result_format', 'result_detail','result_description']
+    results_header = ['result_id','event_title', 'edition', 'edition_id', 'sport', 'sport_url', 'result_date','result_location','result_participants','result_format', 'result_detail','result_description']
     results_threading = [[result_id, output_results_csv_path] for result_id in result_id_list]
 
     with open(output_results_csv_path, 'w', newline='') as f:
@@ -241,7 +241,7 @@ if __name__ == "__main__":
     else:
         print('step 6 - Saving country medal data from the Olympics_Games csv file - disabled') 
 
-    # 7. Create Olympic_Events.csv file with
+    # 7. Create Olympic_Results.csv file with
     # <BUG Fix> - Results 18001004, 18001046, 18001088 have 500 error code
     # Mannually removed these results from the distinct result list
     if trigger['step_7']:
