@@ -72,7 +72,7 @@ def save_country_list_to_csv(olympic_country_csv_path: str=""):
 # 2. Get Olympic Games list
 def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
     games_rows = olympic_scraper.get_olympics_games()
-    games_header = ['edition', 'edition_id','edition_url', 'year', 'city', 'country_flag_url', 'country_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
+    games_header = ['edition', 'edition_id','edition_url', 'season', 'year', 'city', 'country_flag_url', 'country_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
     with open(olympic_games_csv_path, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(games_header)

@@ -21,11 +21,11 @@ cleaned_olympic_results_csv_path = 'data/cleaned_data/Olympic_Results.csv'
 # Note: You can control the trigger to choose which steps you want to run or not
 trigger = {
     'step_1': False,
-    'step_2': False,
+    'step_2': True,
     'step_3': False,
     'step_4': False,
     'step_5': False,
     'step_6': False,
-    'step_7': True,
+    'step_7': False,
     'step_8': False
 }
