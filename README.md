@@ -97,6 +97,8 @@ Perform Web Scraping on the [olympedia website](http://www.olympedia.org/) to ob
         - (Not Fixed)
     4. Result pages with id 18001004, 18001046, 18001088 have 500 error code and has no data in it
         - (Not Fixed) as it is server issue
+    5. 'Born' in Olympic_Athlete_Bio contains non-date strings i.e. 'https://www.olympedia.org/athletes/117719', value is 'in Pyeongyang (PRK)' and other athletes i.e. 46177
+        - (Not Fixed) - can be fixed by converting them into 'na'
 
 ## Future Work ##
     1. Create / Perform Exploratory Data Analysis on the dataset
