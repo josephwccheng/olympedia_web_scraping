@@ -347,3 +347,6 @@ class OlympediaScraper():
             return {'result_id': result_id, 'event_title': event_title, 'edition': edition, 'edition_id': edition_id, 'sport': sport, 'sport_url':sport_url, 'result_date': result_date, 'result_location': result_location, 'result_participants': result_participants, 'result_format': result_format, 'result_detail': result_detail, 'result_description': result_description}
         else:
             return None
+
+    def demoSuper():
+        print("heelo")
