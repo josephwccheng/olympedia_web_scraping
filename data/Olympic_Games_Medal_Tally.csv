@@ -738,7 +738,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1992 Summer Olympics,23,1992,South Africa,RSA,0,2,0,2
 1992 Summer Olympics,23,1992,Belgium,BEL,0,1,2,3
 1992 Summer Olympics,23,1992,Croatia,CRO,0,1,2,3
-1992 Summer Olympics,23,1992,Individual Olympic Athletes,IOA,0,1,2,3
+1992 Summer Olympics,23,1992,Independent Olympic Athletes,IOA,0,1,2,3
 1992 Summer Olympics,23,1992,Islamic Republic of Iran,IRI,0,1,2,3
 1992 Summer Olympics,23,1992,Israel,ISR,0,1,1,2
 1992 Summer Olympics,23,1992,Chinese Taipei,TPE,0,1,0,1
@@ -773,7 +773,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1996 Summer Olympics,24,1996,Romania,ROU,4,7,9,20
 1996 Summer Olympics,24,1996,Netherlands,NED,4,5,10,19
 1996 Summer Olympics,24,1996,Greece,GRE,4,4,0,8
-1996 Summer Olympics,24,1996,Czech Republic,CZE,4,3,4,11
+1996 Summer Olympics,24,1996,Czechia,CZE,4,3,4,11
 1996 Summer Olympics,24,1996,Switzerland,SUI,4,3,0,7
 1996 Summer Olympics,24,1996,Denmark,DEN,4,1,1,6
 1996 Summer Olympics,24,1996,Türkiye,TUR,4,1,1,6
@@ -863,7 +863,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2000 Summer Olympics,25,2000,Spain,ESP,3,3,5,11
 2000 Summer Olympics,25,2000,Türkiye,TUR,3,0,2,5
 2000 Summer Olympics,25,2000,Islamic Republic of Iran,IRI,3,0,1,4
-2000 Summer Olympics,25,2000,Czech Republic,CZE,2,3,3,8
+2000 Summer Olympics,25,2000,Czechia,CZE,2,3,3,8
 2000 Summer Olympics,25,2000,Kenya,KEN,2,3,2,7
 2000 Summer Olympics,25,2000,Denmark,DEN,2,3,1,6
 2000 Summer Olympics,25,2000,Finland,FIN,2,1,1,4
@@ -957,7 +957,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2004 Summer Olympics,26,2004,Chile,CHI,2,0,1,3
 2004 Summer Olympics,26,2004,Kazakhstan,KAZ,1,4,3,8
 2004 Summer Olympics,26,2004,Kenya,KEN,1,4,2,7
-2004 Summer Olympics,26,2004,Czech Republic,CZE,1,3,5,9
+2004 Summer Olympics,26,2004,Czechia,CZE,1,3,5,9
 2004 Summer Olympics,26,2004,South Africa,RSA,1,3,2,6
 2004 Summer Olympics,26,2004,Croatia,CRO,1,2,2,5
 2004 Summer Olympics,26,2004,Lithuania,LTU,1,2,0,3
@@ -1014,7 +1014,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2008 Summer Olympics,53,2008,Norway,NOR,3,5,1,9
 2008 Summer Olympics,53,2008,Brazil,BRA,3,4,10,17
 2008 Summer Olympics,53,2008,Belarus,BLR,3,4,7,14
-2008 Summer Olympics,53,2008,Czech Republic,CZE,3,3,1,7
+2008 Summer Olympics,53,2008,Czechia,CZE,3,3,1,7
 2008 Summer Olympics,53,2008,Slovakia,SVK,3,3,0,6
 2008 Summer Olympics,53,2008,New Zealand,NZL,3,2,4,9
 2008 Summer Olympics,53,2008,Georgia,GEO,3,2,2,7
@@ -1080,7 +1080,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2012 Summer Olympics,54,2012,United States,USA,47,27,30,104
 2012 Summer Olympics,54,2012,People's Republic of China,CHN,38,31,22,91
 2012 Summer Olympics,54,2012,Great Britain,GBR,29,18,18,65
-2012 Summer Olympics,54,2012,Russian Federation,RUS,19,21,26,66
+2012 Summer Olympics,54,2012,Russian Federation,RUS,18,21,26,65
 2012 Summer Olympics,54,2012,Republic of Korea,KOR,13,9,8,30
 2012 Summer Olympics,54,2012,Germany,GER,11,20,13,44
 2012 Summer Olympics,54,2012,France,FRA,11,11,13,35
@@ -1095,7 +1095,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2012 Summer Olympics,54,2012,Cuba,CUB,5,3,7,15
 2012 Summer Olympics,54,2012,Spain,ESP,4,10,6,20
 2012 Summer Olympics,54,2012,Jamaica,JAM,4,5,3,12
-2012 Summer Olympics,54,2012,Czech Republic,CZE,4,3,4,11
+2012 Summer Olympics,54,2012,Czechia,CZE,4,3,4,11
 2012 Summer Olympics,54,2012,South Africa,RSA,4,1,1,6
 2012 Summer Olympics,54,2012,Democratic People's Republic of Korea,PRK,4,0,3,7
 2012 Summer Olympics,54,2012,Brazil,BRA,3,5,9,17
@@ -1205,7 +1205,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2016 Summer Olympics,59,2016,Belarus,BLR,1,4,4,9
 2016 Summer Olympics,59,2016,Türkiye,TUR,1,3,4,8
 2016 Summer Olympics,59,2016,Armenia,ARM,1,3,0,4
-2016 Summer Olympics,59,2016,Czech Republic,CZE,1,2,7,10
+2016 Summer Olympics,59,2016,Czechia,CZE,1,2,7,10
 2016 Summer Olympics,59,2016,Ethiopia,ETH,1,2,5,8
 2016 Summer Olympics,59,2016,Slovenia,SLO,1,2,1,4
 2016 Summer Olympics,59,2016,Indonesia,INA,1,2,0,3
@@ -1214,7 +1214,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2016 Summer Olympics,59,2016,Vietnam,VIE,1,1,0,2
 2016 Summer Olympics,59,2016,Chinese Taipei,TPE,1,0,2,3
 2016 Summer Olympics,59,2016,Côte d'Ivoire,CIV,1,0,1,2
-2016 Summer Olympics,59,2016,Individual Olympic Athletes,IOA,1,0,1,2
+2016 Summer Olympics,59,2016,Independent Olympic Athletes,IOA,1,0,1,2
 2016 Summer Olympics,59,2016,The Bahamas,BAH,1,0,1,2
 2016 Summer Olympics,59,2016,Fiji,FIJ,1,0,0,1
 2016 Summer Olympics,59,2016,Jordan,JOR,1,0,0,1
@@ -1266,7 +1266,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2020 Summer Olympics,61,2020,Hungary,HUN,6,7,7,20
 2020 Summer Olympics,61,2020,Republic of Korea,KOR,6,4,10,20
 2020 Summer Olympics,61,2020,Poland,POL,4,5,5,14
-2020 Summer Olympics,61,2020,Czech Republic,CZE,4,4,3,11
+2020 Summer Olympics,61,2020,Czechia,CZE,4,4,3,11
 2020 Summer Olympics,61,2020,Kenya,KEN,4,4,2,10
 2020 Summer Olympics,61,2020,Norway,NOR,4,2,2,8
 2020 Summer Olympics,61,2020,Jamaica,JAM,4,1,4,9
@@ -1354,15 +1354,16 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1924 Winter Olympics,29,1924,France,FRA,0,0,3,3
 1924 Winter Olympics,29,1924,Belgium,BEL,0,0,1,1
 1928 Winter Olympics,30,1928,Norway,NOR,6,4,5,15
+1928 Winter Olympics,30,1928,United States,USA,2,2,2,6
 1928 Winter Olympics,30,1928,Sweden,SWE,2,2,1,5
 1928 Winter Olympics,30,1928,Finland,FIN,2,1,1,4
-1928 Winter Olympics,30,1928,United States,USA,1,1,2,4
 1928 Winter Olympics,30,1928,Canada,CAN,1,0,0,1
 1928 Winter Olympics,30,1928,France,FRA,1,0,0,1
 1928 Winter Olympics,30,1928,Austria,AUT,0,3,1,4
 1928 Winter Olympics,30,1928,Belgium,BEL,0,0,1,1
 1928 Winter Olympics,30,1928,Czechoslovakia,TCH,0,0,1,1
 1928 Winter Olympics,30,1928,Germany,GER,0,0,1,1
+1928 Winter Olympics,30,1928,Great Britain,GBR,0,0,1,1
 1928 Winter Olympics,30,1928,Switzerland,SUI,0,0,1,1
 1932 Winter Olympics,31,1932,United States,USA,6,4,2,12
 1932 Winter Olympics,31,1932,Norway,NOR,3,4,3,10
@@ -1388,15 +1389,16 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1948 Winter Olympics,33,1948,Norway,NOR,4,3,3,10
 1948 Winter Olympics,33,1948,Sweden,SWE,4,3,3,10
 1948 Winter Olympics,33,1948,Switzerland,SUI,3,4,3,10
-1948 Winter Olympics,33,1948,United States,USA,3,3,2,8
+1948 Winter Olympics,33,1948,United States,USA,3,4,2,9
 1948 Winter Olympics,33,1948,France,FRA,2,1,2,5
 1948 Winter Olympics,33,1948,Canada,CAN,2,0,1,3
 1948 Winter Olympics,33,1948,Austria,AUT,1,3,4,8
 1948 Winter Olympics,33,1948,Finland,FIN,1,3,2,6
 1948 Winter Olympics,33,1948,Belgium,BEL,1,1,0,2
+1948 Winter Olympics,33,1948,Italy,ITA,1,0,0,1
 1948 Winter Olympics,33,1948,Czechoslovakia,TCH,0,1,0,1
 1948 Winter Olympics,33,1948,Hungary,HUN,0,1,0,1
-1948 Winter Olympics,33,1948,Great Britain,GBR,0,0,1,1
+1948 Winter Olympics,33,1948,Great Britain,GBR,0,0,2,2
 1952 Winter Olympics,34,1952,Norway,NOR,7,3,6,16
 1952 Winter Olympics,34,1952,United States,USA,4,6,1,11
 1952 Winter Olympics,34,1952,Finland,FIN,3,4,2,9
@@ -1607,7 +1609,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1998 Winter Olympics,46,1998,Finland,FIN,2,4,6,12
 1998 Winter Olympics,46,1998,Switzerland,SUI,2,2,3,7
 1998 Winter Olympics,46,1998,France,FRA,2,1,5,8
-1998 Winter Olympics,46,1998,Czech Republic,CZE,1,1,1,3
+1998 Winter Olympics,46,1998,Czechia,CZE,1,1,1,3
 1998 Winter Olympics,46,1998,Bulgaria,BUL,1,0,0,1
 1998 Winter Olympics,46,1998,People's Republic of China,CHN,0,6,2,8
 1998 Winter Olympics,46,1998,Sweden,SWE,0,2,1,3
@@ -1620,22 +1622,22 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 1998 Winter Olympics,46,1998,Great Britain,GBR,0,0,1,1
 2002 Winter Olympics,47,2002,Norway,NOR,13,5,7,25
 2002 Winter Olympics,47,2002,Germany,GER,12,16,8,36
-2002 Winter Olympics,47,2002,United States,USA,8,12,11,31
+2002 Winter Olympics,47,2002,United States,USA,10,13,11,34
 2002 Winter Olympics,47,2002,Canada,CAN,7,3,7,17
 2002 Winter Olympics,47,2002,Russian Federation,RUS,5,4,4,13
 2002 Winter Olympics,47,2002,France,FRA,4,5,2,11
 2002 Winter Olympics,47,2002,Italy,ITA,4,4,5,13
 2002 Winter Olympics,47,2002,Finland,FIN,4,2,1,7
 2002 Winter Olympics,47,2002,Netherlands,NED,3,5,0,8
-2002 Winter Olympics,47,2002,Austria,AUT,3,3,10,16
-2002 Winter Olympics,47,2002,Switzerland,SUI,3,2,5,10
+2002 Winter Olympics,47,2002,Austria,AUT,3,4,10,17
+2002 Winter Olympics,47,2002,Switzerland,SUI,3,2,6,11
 2002 Winter Olympics,47,2002,Croatia,CRO,3,1,0,4
 2002 Winter Olympics,47,2002,People's Republic of China,CHN,2,2,4,8
 2002 Winter Olympics,47,2002,Republic of Korea,KOR,2,2,0,4
 2002 Winter Olympics,47,2002,Australia,AUS,2,0,0,2
-2002 Winter Olympics,47,2002,Czech Republic,CZE,1,2,0,3
+2002 Winter Olympics,47,2002,Czechia,CZE,1,2,0,3
 2002 Winter Olympics,47,2002,Estonia,EST,1,1,1,3
-2002 Winter Olympics,47,2002,Great Britain,GBR,1,0,0,1
+2002 Winter Olympics,47,2002,Great Britain,GBR,1,0,1,2
 2002 Winter Olympics,47,2002,Sweden,SWE,0,2,5,7
 2002 Winter Olympics,47,2002,Bulgaria,BUL,0,1,2,3
 2002 Winter Olympics,47,2002,Japan,JPN,0,1,1,2
@@ -1646,17 +1648,17 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2006 Winter Olympics,49,2006,United States,USA,9,9,7,25
 2006 Winter Olympics,49,2006,Austria,AUT,9,7,7,23
 2006 Winter Olympics,49,2006,Russian Federation,RUS,8,6,8,22
+2006 Winter Olympics,49,2006,Canada,CAN,7,10,7,24
 2006 Winter Olympics,49,2006,Sweden,SWE,7,2,5,14
-2006 Winter Olympics,49,2006,Canada,CAN,6,9,6,21
 2006 Winter Olympics,49,2006,Republic of Korea,KOR,6,3,2,11
+2006 Winter Olympics,49,2006,Switzerland,SUI,5,4,5,14
 2006 Winter Olympics,49,2006,Italy,ITA,5,0,6,11
-2006 Winter Olympics,49,2006,Switzerland,SUI,4,4,4,12
 2006 Winter Olympics,49,2006,France,FRA,3,2,4,9
 2006 Winter Olympics,49,2006,Netherlands,NED,3,2,4,9
 2006 Winter Olympics,49,2006,Estonia,EST,3,0,0,3
 2006 Winter Olympics,49,2006,Norway,NOR,2,8,9,19
 2006 Winter Olympics,49,2006,People's Republic of China,CHN,2,4,5,11
-2006 Winter Olympics,49,2006,Czech Republic,CZE,1,2,1,4
+2006 Winter Olympics,49,2006,Czechia,CZE,1,2,1,4
 2006 Winter Olympics,49,2006,Croatia,CRO,1,2,0,3
 2006 Winter Olympics,49,2006,Australia,AUS,1,0,1,2
 2006 Winter Olympics,49,2006,Japan,JPN,1,0,0,1
@@ -1664,6 +1666,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2006 Winter Olympics,49,2006,Poland,POL,0,1,1,2
 2006 Winter Olympics,49,2006,Belarus,BLR,0,1,0,1
 2006 Winter Olympics,49,2006,Bulgaria,BUL,0,1,0,1
+2006 Winter Olympics,49,2006,Great Britain,GBR,0,1,0,1
 2006 Winter Olympics,49,2006,Slovakia,SVK,0,1,0,1
 2006 Winter Olympics,49,2006,Ukraine,UKR,0,0,2,2
 2006 Winter Olympics,49,2006,Latvia,LAT,0,0,1,1
@@ -1680,7 +1683,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2010 Winter Olympics,57,2010,Russian Federation,RUS,3,5,7,15
 2010 Winter Olympics,57,2010,France,FRA,2,3,6,11
 2010 Winter Olympics,57,2010,Australia,AUS,2,1,0,3
-2010 Winter Olympics,57,2010,Czech Republic,CZE,2,0,4,6
+2010 Winter Olympics,57,2010,Czechia,CZE,2,0,4,6
 2010 Winter Olympics,57,2010,Poland,POL,1,3,2,6
 2010 Winter Olympics,57,2010,Italy,ITA,1,1,3,5
 2010 Winter Olympics,57,2010,Belarus,BLR,1,1,1,3
@@ -1707,7 +1710,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2014 Winter Olympics,58,2014,People's Republic of China,CHN,3,4,2,9
 2014 Winter Olympics,58,2014,Republic of Korea,KOR,3,3,2,8
 2014 Winter Olympics,58,2014,Sweden,SWE,2,7,6,15
-2014 Winter Olympics,58,2014,Czech Republic,CZE,2,4,3,9
+2014 Winter Olympics,58,2014,Czechia,CZE,2,4,3,9
 2014 Winter Olympics,58,2014,Slovenia,SLO,2,2,4,8
 2014 Winter Olympics,58,2014,Japan,JPN,1,4,3,8
 2014 Winter Olympics,58,2014,Finland,FIN,1,3,1,5
@@ -1732,7 +1735,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2018 Winter Olympics,60,2018,Japan,JPN,4,5,4,13
 2018 Winter Olympics,60,2018,Italy,ITA,3,2,5,10
 2018 Winter Olympics,60,2018,ROC,ROC,2,6,9,17
-2018 Winter Olympics,60,2018,Czech Republic,CZE,2,2,3,7
+2018 Winter Olympics,60,2018,Czechia,CZE,2,2,3,7
 2018 Winter Olympics,60,2018,Belarus,BLR,2,1,0,3
 2018 Winter Olympics,60,2018,People's Republic of China,CHN,1,6,2,9
 2018 Winter Olympics,60,2018,Slovakia,SVK,1,2,0,3
@@ -1750,7 +1753,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2018 Winter Olympics,60,2018,Latvia,LAT,0,0,1,1
 2018 Winter Olympics,60,2018,Liechtenstein,LIE,0,0,1,1
 2022 Winter Olympics,62,2022,Norway,NOR,16,8,13,37
-2022 Winter Olympics,62,2022,Germany,GER,12,10,4,26
+2022 Winter Olympics,62,2022,Germany,GER,12,10,5,27
 2022 Winter Olympics,62,2022,People's Republic of China,CHN,9,4,2,15
 2022 Winter Olympics,62,2022,United States,USA,8,10,7,25
 2022 Winter Olympics,62,2022,Sweden,SWE,8,5,5,18
@@ -1770,7 +1773,7 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2022 Winter Olympics,62,2022,Great Britain,GBR,1,1,0,2
 2022 Winter Olympics,62,2022,Hungary,HUN,1,0,2,3
 2022 Winter Olympics,62,2022,Belgium,BEL,1,0,1,2
-2022 Winter Olympics,62,2022,Czech Republic,CZE,1,0,1,2
+2022 Winter Olympics,62,2022,Czechia,CZE,1,0,1,2
 2022 Winter Olympics,62,2022,Slovakia,SVK,1,0,1,2
 2022 Winter Olympics,62,2022,Belarus,BLR,0,2,0,2
 2022 Winter Olympics,62,2022,Spain,ESP,0,1,0,1
@@ -1778,3 +1781,28 @@ edition,edition_id,year,country,country_noc,gold,silver,bronze,total
 2022 Winter Olympics,62,2022,Estonia,EST,0,0,1,1
 2022 Winter Olympics,62,2022,Latvia,LAT,0,0,1,1
 2022 Winter Olympics,62,2022,Poland,POL,0,0,1,1
+1956 Equestrian,48,1956,Sweden,SWE,3,0,0,3
+1956 Equestrian,48,1956,Germany,GER,2,3,1,6
+1956 Equestrian,48,1956,Great Britain,GBR,1,0,2,3
+1956 Equestrian,48,1956,Italy,ITA,0,2,1,3
+1956 Equestrian,48,1956,Denmark,DEN,0,1,0,1
+1956 Equestrian,48,1956,Canada,CAN,0,0,1,1
+1956 Equestrian,48,1956,Switzerland,SUI,0,0,1,1
+1906 Intercalated,4,1906,France,FRA,15,9,16,40
+1906 Intercalated,4,1906,United States,USA,12,6,6,24
+1906 Intercalated,4,1906,Greece,GRE,8,14,13,35
+1906 Intercalated,4,1906,Great Britain,GBR,8,11,5,24
+1906 Intercalated,4,1906,Italy,ITA,7,6,3,16
+1906 Intercalated,4,1906,Germany,GER,4,6,5,15
+1906 Intercalated,4,1906,Switzerland,SUI,4,3,1,8
+1906 Intercalated,4,1906,Austria,AUT,3,3,3,9
+1906 Intercalated,4,1906,Denmark,DEN,3,2,1,6
+1906 Intercalated,4,1906,Sweden,SWE,2,5,7,14
+1906 Intercalated,4,1906,Hungary,HUN,2,5,3,10
+1906 Intercalated,4,1906,Belgium,BEL,2,2,3,7
+1906 Intercalated,4,1906,Finland,FIN,2,1,1,4
+1906 Intercalated,4,1906,Canada,CAN,1,1,0,2
+1906 Intercalated,4,1906,Norway,NOR,1,1,0,2
+1906 Intercalated,4,1906,Netherlands,NED,0,1,2,3
+1906 Intercalated,4,1906,Australia,AUS,0,0,3,3
+1906 Intercalated,4,1906,Bohemia,BOH,0,0,2,2
