@@ -1,7 +1,7 @@
 edition,edition_id,edition_url,year,city,country_flag_url,country_noc,start_date,end_date,competition_date,isHeld
 1896 Summer Olympics,1,/editions/1,1896,Athina,/images/flags/GRE.png,GRE, 6 April,15 April,6 – 13 April,
 1900 Summer Olympics,2,/editions/2,1900,Paris,/images/flags/FRA.png,FRA,,,14 May – 28 October,
-1904 Summer Olympics,3,/editions/3,1904,St. Louis,/images/flags/USA.png,USA,14 May,, 1 July – 23 November,
+1904 Summer Olympics,3,/editions/3,1904,St. Louis,/images/flags/USA.png,USA,14 May,, 1 July – 26 November,
 1908 Summer Olympics,5,/editions/5,1908,London,/images/flags/GBR.png,GBR,13 July,,27 April – 31 October,
 1912 Summer Olympics,6,/editions/6,1912,Stockholm,/images/flags/SWE.png,SWE, 6 July,27 July, 5 May – 27 July,
 1916 Summer Olympics,50,/editions/50,1916,Berlin,/images/flags/GER.png,GER,,,—,Not held due to war
@@ -9,7 +9,7 @@ edition,edition_id,edition_url,year,city,country_flag_url,country_noc,start_date
 1924 Summer Olympics,8,/editions/8,1924,Paris,/images/flags/FRA.png,FRA, 5 July,27 July, 4 May – 27 July,
 1928 Summer Olympics,9,/editions/9,1928,Amsterdam,/images/flags/NED.png,NED,28 July,12 August,17 May – 12 August,
 1932 Summer Olympics,10,/editions/10,1932,Los Angeles,/images/flags/USA.png,USA,30 July,14 August,30 July – 14 August,
-1936 Summer Olympics,11,/editions/11,1936,Berlin,/images/flags/GER.png,GER, 1 August,16 August,2 – 16 August,
+1936 Summer Olympics,11,/editions/11,1936,Berlin,/images/flags/GER.png,GER, 1 August,16 August,1 – 16 August,
 1940 Summer Olympics,51,/editions/51,1940,Helsinki,/images/flags/FIN.png,FIN,,,—,Not held due to war
 1944 Summer Olympics,52,/editions/52,1944,London,/images/flags/GBR.png,GBR,,,—,Not held due to war
 1948 Summer Olympics,12,/editions/12,1948,London,/images/flags/GBR.png,GBR,29 July,14 August,26 July – 14 August,
@@ -60,4 +60,6 @@ edition,edition_id,edition_url,year,city,country_flag_url,country_noc,start_date
 2014 Winter Olympics,58,/editions/58,2014,Sochi,/images/flags/RUS.png,RUS, 7 February,23 February,6 – 23 February,
 2018 Winter Olympics,60,/editions/60,2018,PyeongChang,/images/flags/KOR.png,KOR, 9 February,25 February,8 – 25 February,
 2022 Winter Olympics,62,/editions/62,2022,Beijing,/images/flags/CHN.png,CHN, 4 February,20 February,2 – 20 February,
-2026 Winter Olympics,72,/editions/72,2026,Milano-Cortina d'Ampezzo,/images/flags/ITA.png,ITA,,,—,
+2026 Winter Olympics,72,/editions/72,2026,Milano-Cortina d'Ampezzo,/images/flags/ITA.png,ITA, 6 February,22 February,4 – 22 February,
+1956 Equestrian,48,/editions/48,1956,Stockholm,/images/flags/SWE.png,SWE,10 June,17 June,11 – 17 June,
+1906 Intercalated,4,/editions/4,1906,Athina,/images/flags/GRE.png,GRE,22 April, 2 May,22 April –  2 May,

@@ -39,17 +39,23 @@ class OlympediaScraper():
         winter_table = games_soup.select_one('body > div.container > table:nth-child(7)')
         winter_extracted = self._extract_content_from_editions_table(winter_table, 'Winter Olympics')
 
-        games = summer_extracted['games'] + winter_extracted['games']
-        edition_ids = summer_extracted['edition_ids'] + winter_extracted['edition_ids']
-        edition_urls = summer_extracted['edition_urls'] + winter_extracted['edition_urls']
-        years = summer_extracted['years'] + winter_extracted['years']
-        cities = summer_extracted['cities'] + winter_extracted['cities']
-        countries_flag_url = summer_extracted['countries_flag_url'] + winter_extracted['countries_flag_url']
-        countries_noc = summer_extracted['countries_noc'] + winter_extracted['countries_noc']
-        start_date = summer_extracted['start_date'] + winter_extracted['start_date']
-        end_date = summer_extracted['end_date'] + winter_extracted['end_date']
-        competition_date = summer_extracted['competition_date'] + winter_extracted['competition_date']
-        isHeld = summer_extracted['isHeld'] + winter_extracted['isHeld']
+        equestrian_table = games_soup.select_one('body > div.container > table:nth-child(9)')
+        equestrian_extracted = self._extract_content_from_editions_table(equestrian_table, 'Equestrian')
+
+        intercalated_table = games_soup.select_one('body > div.container > table:nth-child(12)')
+        intercalated_extracted = self._extract_content_from_editions_table(intercalated_table, 'Intercalated')
+
+        games = summer_extracted['games'] + winter_extracted['games'] + equestrian_extracted['games'] + intercalated_extracted['games']
+        edition_ids = summer_extracted['edition_ids'] + winter_extracted['edition_ids'] + equestrian_extracted['edition_ids'] + intercalated_extracted['edition_ids']
+        edition_urls = summer_extracted['edition_urls'] + winter_extracted['edition_urls'] + equestrian_extracted['edition_urls'] + intercalated_extracted['edition_urls']
+        years = summer_extracted['years'] + winter_extracted['years'] + equestrian_extracted['years'] + intercalated_extracted['years']
+        cities = summer_extracted['cities'] + winter_extracted['cities'] + equestrian_extracted['cities'] + intercalated_extracted['cities']
+        countries_flag_url = summer_extracted['countries_flag_url'] + winter_extracted['countries_flag_url'] + equestrian_extracted['countries_flag_url'] + intercalated_extracted['countries_flag_url']
+        countries_noc = summer_extracted['countries_noc'] + winter_extracted['countries_noc'] + equestrian_extracted['countries_noc'] + intercalated_extracted['countries_noc']
+        start_date = summer_extracted['start_date'] + winter_extracted['start_date'] + equestrian_extracted['start_date'] + intercalated_extracted['start_date']
+        end_date = summer_extracted['end_date'] + winter_extracted['end_date'] + equestrian_extracted['end_date'] + intercalated_extracted['end_date']
+        competition_date = summer_extracted['competition_date'] + winter_extracted['competition_date'] + equestrian_extracted['competition_date'] + intercalated_extracted['competition_date']
+        isHeld = summer_extracted['isHeld'] + winter_extracted['isHeld'] + equestrian_extracted['isHeld'] + intercalated_extracted['isHeld']
 
         return [[games[i], edition_ids[i], edition_urls[i], years[i], cities[i], countries_flag_url[i], countries_noc[i], start_date[i], end_date[i], competition_date[i], isHeld[i]] for i in range(len(years))]
 
