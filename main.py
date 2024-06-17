@@ -18,46 +18,55 @@ import concurrent.futures
 
 
 # Creating function to save event ahtlete results for multi-threading / processing
-def _get_event_athlete_results_from_country_into_csv(country_noc:str, file_path: str=""):
+def _get_event_athlete_results_from_country_into_csv(country_noc: str, file_path: str = ""):
     if not file_path:
         raise ValueError("file path not found")
-    event_athlete_results = olympic_scraper.get_event_athletes_results_from_country(country_noc)
+    event_athlete_results = olympic_scraper.get_event_athletes_results_from_country(
+        country_noc)
     with open(file_path, 'a+', newline='') as f:
-        writer= csv.writer(f)
+        writer = csv.writer(f)
         if event_athlete_results is not None:
             for event_athlete_result in event_athlete_results:
                 writer.writerow(list(event_athlete_result.values()))
     return country_noc
 
 # Creating function to athlete's bio and results for multi-threading / processing
-def get_athlete_bio_and_results_into_csv(athlete_id:str, bio_file_path: str="", event_file_path: str=""):
+
+
+def get_athlete_bio_and_results_into_csv(athlete_id: str, bio_file_path: str = "", event_file_path: str = ""):
     if not bio_file_path or not event_file_path:
         raise ValueError("file path not found")
-    athlete_bio_and_results = olympic_scraper.get_bio_and_results_from_athlete_id(athlete_id)
-    with open(bio_file_path, 'a+', newline='') as f_bio, open(event_file_path, 'a+', newline='') as f_events:
-        writer_bio = csv.writer(f_bio)
-        writer_events = csv.writer(f_events)
+    athlete_bio_and_results = olympic_scraper.get_bio_and_results_from_athlete_id(
+        athlete_id)
+    if athlete_bio_and_results:
+        with open(bio_file_path, 'a+', newline='') as f_bio, open(event_file_path, 'a+', newline='') as f_events:
+            writer_bio = csv.writer(f_bio)
+            writer_events = csv.writer(f_events)
 
-        athlete_bio = athlete_bio_and_results['athlete_bio_info']
-        writer_bio.writerow(list(athlete_bio.values()))
+            athlete_bio = athlete_bio_and_results['athlete_bio_info']
+            writer_bio.writerow(list(athlete_bio.values()))
 
-        athlete_results = athlete_bio_and_results['athlete_results']
-        for athlete_result in athlete_results:
-            writer_events.writerow(list(athlete_result.values()))
+            athlete_results = athlete_bio_and_results['athlete_results']
+            for athlete_result in athlete_results:
+                writer_events.writerow(list(athlete_result.values()))
     return athlete_id
 
 # Creating function to download html files for multi-threading / processing
-def download_html_from_result_id(result_id:str, file_path: str=""):
+
+
+def download_html_from_result_id(result_id: str, file_path: str = ""):
     if not file_path:
         raise ValueError("file path not found")
     olympic_scraper = OlympediaScraper()
     result_html = olympic_scraper.get_html_from_result_id(result_id)
-    with open(file_path + '/' + result_id + '.html', 'wb') as file: # saves modified html doc
+    with open(file_path + '/' + result_id + '.html', 'wb') as file:  # saves modified html doc
         file.write(result_html)
     return result_id
 
 # 1. Get Country List
-def save_country_list_to_csv(olympic_country_csv_path: str=""):
+
+
+def save_country_list_to_csv(olympic_country_csv_path: str = ""):
     country_rows = olympic_scraper.get_countries_list()
     country_header = ['noc', 'country']
     with open(olympic_country_csv_path, 'w') as f:
@@ -70,9 +79,12 @@ def save_country_list_to_csv(olympic_country_csv_path: str=""):
     return True
 
 # 2. Get Olympic Games list
+
+
 def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
     games_rows = olympic_scraper.get_olympics_games()
-    games_header = ['edition', 'edition_id','edition_url', 'year', 'city', 'country_flag_url', 'country_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
+    games_header = ['edition', 'edition_id', 'edition_url', 'year', 'city', 'country_flag_url',
+                    'country_noc', 'start_date', 'end_date', 'competition_date', 'isHeld']
     with open(olympic_games_csv_path, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(games_header)
@@ -81,113 +93,149 @@ def save_olympic_games_list_to_csv(olympic_games_csv_path: str):
     return True
 
 # 3. Get all athlete ids and their results
+
+
 def save_all_athlete_and_results_from_country_noc_to_csv(country_noc: list, output_athlete_event_results_csv_path: str):
-    event_athletes_header = ["edition","edition_id","country_noc","sport","event","result_id","athlete","athlete_id","pos","medal","isTeamSport"]
-    country_noc_threading = [[noc, output_athlete_event_results_csv_path] for noc in country_noc]
+    event_athletes_header = ["edition", "edition_id", "country_noc", "sport",
+                             "event", "result_id", "athlete", "athlete_id", "pos", "medal", "isTeamSport"]
+    country_noc_threading = [
+        [noc, output_athlete_event_results_csv_path] for noc in country_noc]
     with open(output_athlete_event_results_csv_path, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(event_athletes_header)
     with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
         # map will print the result in order
-        results = list(tqdm(executor.map(lambda p: _get_event_athlete_results_from_country_into_csv(*p), country_noc_threading), total=len(country_noc)))
-    
+        results = list(tqdm(executor.map(lambda p: _get_event_athlete_results_from_country_into_csv(
+            *p), country_noc_threading), total=len(country_noc)))
+
     print(f'3. {output_athlete_event_results_csv_path} file created!')
     return True
 
 # 4. Get Distinct Athlete ID and Event Information into new CSV Files
+
+
 def get_distinct_athlete_and_events_from_athlete_event_csv(athlete_event_results_csv_path: str, output_distinct_athlete_id_csv_path: str, output_distinct_result_id_csv_path: str):
     if exists(athlete_event_results_csv_path):
         athlte_id_header = ['athlete_id']
         result_id_header = ['result_id']
         athlete_event_results_df = pd.read_csv(athlete_event_results_csv_path)
-        distinct_athlete_id_list = set(athlete_event_results_df['athlete_id'].astype(str).values.tolist())
-        distinct_result_id_list = set(athlete_event_results_df['result_id'].astype(str).values.tolist())
+        distinct_athlete_id_list = set(
+            athlete_event_results_df['athlete_id'].astype(str).values.tolist())
+        distinct_result_id_list = set(
+            athlete_event_results_df['result_id'].astype(str).values.tolist())
 
         with open(output_distinct_athlete_id_csv_path, 'w') as f:
             writer = csv.writer(f)
             writer.writerow(athlte_id_header)
-            writer.writerows([[athlete_id] for athlete_id in distinct_athlete_id_list])
+            writer.writerows([[athlete_id]
+                             for athlete_id in distinct_athlete_id_list])
 
         with open(output_distinct_result_id_csv_path, 'w') as f:
             writer = csv.writer(f)
             writer.writerow(result_id_header)
-            writer.writerows([[result_id] for result_id in distinct_result_id_list])
-        print(f'4. {distinct_athlete_id_csv_path} and {distinct_result_id_csv_path} files created!')
+            writer.writerows([[result_id]
+                             for result_id in distinct_result_id_list])
+        print(
+            f'4. {distinct_athlete_id_csv_path} and {distinct_result_id_csv_path} files created!')
         return True
     else:
         print(f'4. {olympic_athlete_event_results_csv_path} doesn\'t exist')
         return False
 
 # 5. Get athlete bio information and results from all the events they parcipated in
-def get_athlete_bio_and_results_from_athlete_id_list(athlete_ids: list, output_athlete_bio_csv_path:str, output_athlete_event_results_csv_path:str):
-    bio_header = ['athlete_id', 'name', 'sex', 'born', 'height', 'weight', 'country', 'country_noc', 'description', 'special_notes']
-    events_header = ['edition','edition_id', 'country_noc','sport','event','result_id','athlete','athlete_id','pos','medals']
-    athlete_id_threading = [[athlete_id, output_athlete_bio_csv_path, output_athlete_event_results_csv_path] for athlete_id in athlete_ids]
+
+
+def get_athlete_bio_and_results_from_athlete_id_list(athlete_ids: list, output_athlete_bio_csv_path: str, output_athlete_event_results_csv_path: str):
+    bio_header = ['athlete_id', 'name', 'sex', 'born', 'height',
+                  'weight', 'country', 'country_noc', 'description', 'special_notes']
+    events_header = ['edition', 'edition_id', 'country_noc', 'sport',
+                     'event', 'result_id', 'athlete', 'athlete_id', 'pos', 'medals']
+    athlete_id_threading = [[athlete_id, output_athlete_bio_csv_path,
+                             output_athlete_event_results_csv_path] for athlete_id in athlete_ids]
     with open(output_athlete_bio_csv_path, 'w', newline='') as f_bio, open(output_athlete_event_results_csv_path, 'w', newline='') as f_events:
         writer_bio = csv.writer(f_bio)
         writer_events = csv.writer(f_events)
         writer_bio.writerow(bio_header)
         writer_events.writerow(events_header)
-    
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
         # map will print the result in order
-        results = list(tqdm(executor.map(lambda p: get_athlete_bio_and_results_into_csv(*p), athlete_id_threading), total=len(athlete_ids)))
-    print(f'5. {output_athlete_bio_csv_path} and {output_athlete_event_results_csv_path} files created!')  
+        results = list(tqdm(executor.map(lambda p: get_athlete_bio_and_results_into_csv(
+            *p), athlete_id_threading), total=len(athlete_ids)))
+    print(f'5. {output_athlete_bio_csv_path} and {output_athlete_event_results_csv_path} files created!')
 
 # 6. Saving Medal results to CSV file
 # TODO - Multi Process to make this faster
-def save_medel_results_to_csv(olympic_games_csv_path: str , output_medal_results_csv_path: str):
+
+
+def save_medel_results_to_csv(olympic_games_csv_path: str, output_medal_results_csv_path: str):
     olympic_games_df = pd.read_csv(olympic_games_csv_path)
     medal_result = []
-    header = ['edition', 'edition_id', 'year', 'country', 'country_noc', 'gold', 'silver', 'bronze', 'total']
+    header = ['edition', 'edition_id', 'year', 'country',
+              'country_noc', 'gold', 'silver', 'bronze', 'total']
 
-    for _, row in tqdm(olympic_games_df.iterrows(), total= len(olympic_games_df), desc="6. saving medal results from olympic games"): # Loop for each olympic game
+    # Loop for each olympic game
+    for _, row in tqdm(olympic_games_df.iterrows(), total=len(olympic_games_df), desc="6. saving medal results from olympic games"):
         edition_id = row['edition_url'].split('/')[2]
-        medal_table = olympic_scraper.get_medal_table_from_editions_id(edition_id)
+        medal_table = olympic_scraper.get_medal_table_from_editions_id(
+            edition_id)
         if medal_table:
             for i in range(len(medal_table['country'])):
-                medal_result.append([row['edition'], edition_id, row['year'], medal_table['country'][i], medal_table['noc'][i], medal_table['gold'][i], medal_table['silver'][i], medal_table['bronze'][i], medal_table['total'][i]])
+                medal_result.append([row['edition'], edition_id, row['year'], medal_table['country'][i], medal_table['noc']
+                                    [i], medal_table['gold'][i], medal_table['silver'][i], medal_table['bronze'][i], medal_table['total'][i]])
     with open(output_medal_results_csv_path, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        writer.writerows(medal_result) 
+        writer.writerows(medal_result)
     return True
 
 # 7. Saving Olympic Results to CSV file
+
+
 def save_olympic_results_to_csv(result_id_list: list, output_results_csv_path: str):
-    results_header = ['result_id','event_title', 'edition', 'edition_id', 'sport', 'sport_url', 'result_date','result_location','result_participants','result_format', 'result_detail','result_description']
-    results_threading = [[result_id, output_results_csv_path] for result_id in result_id_list]
+    results_header = ['result_id', 'event_title', 'edition', 'edition_id', 'sport', 'sport_url', 'result_date',
+                      'result_location', 'result_participants', 'result_format', 'result_detail', 'result_description']
+    results_threading = [[result_id, output_results_csv_path]
+                         for result_id in result_id_list]
 
     with open(output_results_csv_path, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(results_header)
     with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
         # map will print the result in order
-        results = list(tqdm(executor.map(lambda p: _get_result_info_from_result_id_into_csv(*p), results_threading), total=len(results_threading)))
+        results = list(tqdm(executor.map(lambda p: _get_result_info_from_result_id_into_csv(
+            *p), results_threading), total=len(results_threading)))
     print(f'7. {output_results_csv_path} file created!')
 
 # helper function
+
+
 def _get_result_info_from_result_id_into_csv(result_id: str, file_path: str):
     if not file_path:
         raise ValueError("file path not found")
     result_bio_info = olympic_scraper.get_result_info_from_result_id(result_id)
     if result_bio_info is not None:
         with open(file_path, 'a+', newline='') as f:
-            writer= csv.writer(f)
+            writer = csv.writer(f)
             writer.writerow(list(result_bio_info.values()))
     return result_id
 
 # 8. Download Results html into local repository
+
+
 def download_result_html_to_path(event_ids: list, output_result_html_files_path: str):
-    event_ids_multi_processing = [[event_id, output_result_html_files_path] for event_id in event_ids]
+    event_ids_multi_processing = [
+        [event_id, output_result_html_files_path] for event_id in event_ids]
     if multiprocessing.cpu_count() > 0:
         cpu_count = multiprocessing.cpu_count()
     else:
         cpu_count = 5
     print(f'detected {cpu_count} cpu cores')
     with Pool(processes=cpu_count) as p:
-        event_html = list(tqdm(p.starmap(download_html_from_result_id, event_ids_multi_processing), total=len(event_ids), desc= 'downloading html from a list of events'))
+        event_html = list(tqdm(p.starmap(download_html_from_result_id, event_ids_multi_processing), total=len(
+            event_ids), desc='downloading html from a list of events'))
     print(f'7. event html files downloaded to {output_result_html_files_path}')
+
 
 if __name__ == "__main__":
 
@@ -198,32 +246,36 @@ if __name__ == "__main__":
         save_country_list_to_csv(olympic_country_csv_path)
     else:
         print('step 1 - Get Country List - disabled')
-    
+
     # 2. Get Olympic Games List
     if trigger['step_2']:
         save_olympic_games_list_to_csv(olympic_games_csv_path)
     else:
         print('step 2 - Get Olympic Games List - disabled')
-    
+
     # 3. Get All athlete ids and their results
     # Warning: This will take a long time as it is looping through 233 countries and all the results page on each olympics they participated
     if trigger['step_3']:
         country_rows = olympic_scraper.get_countries_list()
         country_noc = [i[0] for i in country_rows]
-        save_all_athlete_and_results_from_country_noc_to_csv(country_noc, olympic_athlete_event_results_csv_path)
+        save_all_athlete_and_results_from_country_noc_to_csv(
+            country_noc, olympic_athlete_event_results_csv_path)
         # <BUG FIX> - issue with results page not listing all player -> https://www.olympedia.org/countries/CAN/editions/62 -> Monobob
         # Temporary fix by manually adding in the data values
-        combined_results_df = pd.concat(pd.read_csv(f) for f in [olympic_athlete_event_results_csv_path, olympic_athlete_event_missing_result_csv_path])
-        combined_results_df.to_csv(olympic_athlete_event_results_csv_path, index=False, encoding='utf-8-sig')
-    
+        combined_results_df = pd.concat(pd.read_csv(f) for f in [
+                                        olympic_athlete_event_results_csv_path, olympic_athlete_event_missing_result_csv_path])
+        combined_results_df.to_csv(
+            olympic_athlete_event_results_csv_path, index=False, encoding='utf-8-sig')
+
     else:
         print('step 3 - save all athlete and results from country noc to csv - disabled')
 
     #  4. Get Distinct Athlete ID and Event Information into new CSV Files
     if trigger['step_4']:
-        get_distinct_athlete_and_events_from_athlete_event_csv(olympic_athlete_event_results_csv_path, distinct_athlete_id_csv_path, distinct_result_id_csv_path)
+        get_distinct_athlete_and_events_from_athlete_event_csv(
+            olympic_athlete_event_results_csv_path, distinct_athlete_id_csv_path, distinct_result_id_csv_path)
     else:
-        print('step 4 - Get Distinct Athlete ID and Event Information into new CSV Files - disabled')   
+        print('step 4 - Get Distinct Athlete ID and Event Information into new CSV Files - disabled')
 
     # 5. Get athlete bio information and results from all the events they parcipated in
     # Warning: This will take a long time as it is looping through 150,000 athlete pages
@@ -231,15 +283,18 @@ if __name__ == "__main__":
         with open(distinct_athlete_id_csv_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             athlete_ids = [item for row in csv_reader for item in row]
-        get_athlete_bio_and_results_from_athlete_id_list(athlete_ids[1:], olympic_athlete_bio_csv_path, olympic_athlete_event_results_csv_path_2)
+        get_athlete_bio_and_results_from_athlete_id_list(
+            athlete_ids[1:], olympic_athlete_bio_csv_path, olympic_athlete_event_results_csv_path_2)
     else:
-        print('step 5 - Get athlete bio information and results from all the events they parcipated in - disabled')   
-    
+        print('step 5 - Get athlete bio information and results from all the events they parcipated in - disabled')
+
     # 6. Saving country medal data from the Olympics_Games Csv file
     if trigger['step_6']:
-        save_medel_results_to_csv(olympic_games_csv_path, olympic_games_medal_tally)
+        save_medel_results_to_csv(
+            olympic_games_csv_path, olympic_games_medal_tally)
     else:
-        print('step 6 - Saving country medal data from the Olympics_Games csv file - disabled') 
+        print(
+            'step 6 - Saving country medal data from the Olympics_Games csv file - disabled')
 
     # 7. Create Olympic_Results.csv file with
     # <BUG Fix> - Results 18001004, 18001046, 18001088 have 500 error code
@@ -250,7 +305,7 @@ if __name__ == "__main__":
             event_ids = [item for row in csv_reader for item in row]
         save_olympic_results_to_csv(event_ids[1:], olympic_results_csv_path)
     else:
-        print('step 7 - Saving Olympic Events csv file - disabled') 
+        print('step 7 - Saving Olympic Events csv file - disabled')
 
     # 8. Download Results html into local repository
     # Warning: This will take a long time as it is looping through 8,000 events and downloading the html page
@@ -260,6 +315,6 @@ if __name__ == "__main__":
             event_ids = [item for row in csv_reader for item in row]
         download_result_html_to_path(event_ids[1:], raw_result_html_files_path)
     else:
-        print('step 8 - Download Results html into local repository - disabled') 
+        print('step 8 - Download Results html into local repository - disabled')
 
     print('Olympedia Web Scrapping Completed')
